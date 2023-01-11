@@ -12,9 +12,8 @@ public class PlayerController : MonoBehaviour, IPlayerController
     [SerializeField] private LayerMask _groundLayerMask; 
     
     private Rigidbody2D _rb;
-    private InputManager _input;
-    private FrameInput _frameInput;
-    
+    private PlayerInputs _frameInput;
+
     private int _fixedUpdateCounter;
     private bool _hasControl;
     private bool _grounded;
@@ -27,22 +26,18 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
     #region Public
 
-    public Vector2 Input => _frameInput.Move;
+    //public Vector2 Input => _frameInput.Move;
     public Vector2 Speed => _rb.velocity;
     public bool Falling => _rb.velocity.y < 0;
     public bool Jumping => _rb.velocity.y > 0;
     public bool FacingRight => _facingRight;
     public bool Grounded => _grounded;
-    public bool Rolling => _rolling;
-    public bool Dashing => _dashing;
 
     #endregion
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _input = GetComponent<InputManager>();
-        _feetCollider = GetComponent<BoxCollider2D>();
     }
 
     private void Start()
@@ -54,15 +49,13 @@ public class PlayerController : MonoBehaviour, IPlayerController
     {
         IsGrounded();
                     
-        _frameInput = _input.FrameInput;
+        _frameInput = InputManager.PlayerInputs;
         if (_frameInput.JumpDown)
         {
             _jumpToConsume = true;
             _frameJumpWasPressed = _fixedUpdateCounter;
         }
         if (_frameInput.JumpUp) JumpCut();
-
-        if (_frameInput.DashDown && (_stats.AllowDash || _stats.AllowRoll)) _dodgeToConsume = true;
     }
     
     private void FixedUpdate()
@@ -73,9 +66,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
         Flip();
         Horizontal();
         Jump();
-        Dodge();
         ArtificialFriction();
-        
         
         // !input dependant
         GravityModifier();
@@ -109,10 +100,8 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
     private void Horizontal()
     {
-        if (_dashing || _rolling) return;
-
         // calculate wanted direction and desired velocity
-        float targetSpeed = (_frameInput.Move.x == 0 ? 0 : MathF.Sign(_frameInput.Move.x))  * _stats.MoveSpeed;
+        float targetSpeed = (_frameInput.Movement2d.Live.x == 0 ? 0 : MathF.Sign(_frameInput.Movement2d.Live.x))  * _stats.MoveSpeed;
         // calculate difference between current volocity and target velocity
         float speedDif = targetSpeed - _rb.velocity.x;
         // change acceleration rate depending on situations;
@@ -128,7 +117,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
     private void ArtificialFriction()
     {
         if (!_grounded) return;
-        if (!(Mathf.Abs(_frameInput.Move.x) < 0.01f)) return;
+        if (!(Mathf.Abs(_frameInput.Movement2d.Live.x) < 0.01f)) return;
         
         // use either friction amount or velocity
         float amount = Mathf.Min(Mathf.Abs(_rb.velocity.x), Mathf.Abs(_stats.Friction));
@@ -194,87 +183,22 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
     #endregion
 
-    #region Dodge
-    
-    private bool _dodgeToConsume;
-    private int _frameDodgeWasPressed;
-    private float dodgeDir;
-    
-    private bool _dashing;
-    private bool _rolling;
-
-    private void Dodge()
-    {
-        if (_dodgeToConsume)
-        {
-            _frameDodgeWasPressed = _fixedUpdateCounter;
-            _dodgeToConsume = false;
-            float moveX = _frameInput.Move.x;
-            if (moveX.Equals(0)) return;
-            dodgeDir = MathF.Sign(moveX);
-
-            if (_grounded && _stats.AllowRoll) _rolling = true;
-            else if (!_grounded && _stats.AllowDash) _dashing = true;
-        }
-        
-        if (_dashing) Dash();
-        if (_rolling) Roll();
-    }
-    
-    private void Dash()
-    {
-        if (_fixedUpdateCounter > _frameDodgeWasPressed + _stats.DashDurationFrame)
-        {
-            StopDodge();
-            return;
-        }
-
-        _dashing = true;
-        _rb.velocity = new Vector2(_rb.velocity.x, 0);
-        float dashVel = dodgeDir * _stats.DashVelocity;
-        _rb.AddForce(dashVel * Vector2.right);
-        
-    }
-
-    private void Roll()
-    {
-        if (_fixedUpdateCounter > _frameDodgeWasPressed + _stats.RollDurationFrame)
-        {
-            StopDodge();
-            return;
-        }
-
-        _rolling = true;
-        float rollVel = dodgeDir * _stats.RollVelocity;
-        _rb.AddForce(rollVel * Vector2.right);
-    }
-    
-    private void StopDodge()
-    {
-        _rolling = false;
-        _dashing = false;
-    }
-
-    #endregion
-
     private void Flip()
     {
-        if (Mathf.Abs(_frameInput.Move.x) < 0.1f) return;
-        if (_facingRight && Mathf.Sign(_frameInput.Move.x) < 0) return;
-        if (!_facingRight && Mathf.Sign(_frameInput.Move.x) > 0) return;
-        Utilities.FlipTransform(transform);
+        if (Mathf.Abs(_frameInput.Movement2d.Live.x) < 0.1f) return;
+        if (_facingRight && Mathf.Sign(_frameInput.Movement2d.Live.x) < 0) return;
+        if (!_facingRight && Mathf.Sign(_frameInput.Movement2d.Live.x) > 0) return;
+        //Utilities.FlipTransform(transform);
         _facingRight = !_facingRight;
     }
 }
 
 public interface IPlayerController
 {
-    public Vector2 Input { get; }
     public Vector2 Speed { get; }
     public bool Falling { get; }
     public bool Jumping { get; }
-    public bool Rolling { get; }
-    public bool Dashing { get; }
+    public bool FacingRight { get; }
     public bool Grounded { get; }
 }
 
