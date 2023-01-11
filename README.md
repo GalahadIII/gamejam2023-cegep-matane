@@ -1,2 +1,2 @@
-# gamejam2023-cegep-matane
-Repo github pour le gamejam intercollegial de Valleyfield 
+# Code4Gamjam
+https://excalidraw.com/#room=c8d77504639a6088ca58,dHHtceIGOFt3Kcp0SclHrA
