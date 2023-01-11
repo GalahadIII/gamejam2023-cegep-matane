@@ -2,9 +2,9 @@
 /shelf/
 /workspace.xml
 # Rider ignored files
+/projectSettingsUpdater.xml
 /modules.xml
 /contentModel.xml
-/projectSettingsUpdater.xml
 /.idea.Game Jam.iml
 # Editor-based HTTP Client requests
 /httpRequests/
