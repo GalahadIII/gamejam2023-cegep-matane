@@ -63,6 +63,8 @@ public class InputManager : MonoBehaviour
         Vector2InputDataUpdate(ref _playerInputs.CursorPositionDelta, _cursorPositionDelta.ReadValue<Vector2>());
 
         _playerInputs.CursorPosition = _cursorPosition.ReadValue<Vector2>();
+        
+        KeyInputDataUpdate(ref _playerInputs.Jump, _moveUp.ReadValue<float>() != 0f);
 
         KeyInputDataUpdate(ref _playerInputs.Interact, _interaction.ReadValue<float>() != 0f);
         
@@ -80,6 +82,8 @@ public class InputManager : MonoBehaviour
         Vector2InputDataUpdateTimer(ref _playerInputs.CursorPositionDelta);
         
         //
+        
+        KeyInputDataUpdateTimer(ref _playerInputs.Jump);
         
         KeyInputDataUpdateTimer(ref _playerInputs.Interact);
         
@@ -212,6 +216,7 @@ public struct PlayerInputs
     public Vector2Input CursorPositionDelta;
     public Vector2 CursorPosition;
     // public KeyInput Dash;
+    public KeyInput Jump;
     public KeyInput Interact;
     public KeyInput Inventory;
     public KeyInput Action1;
