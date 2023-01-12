@@ -13,20 +13,22 @@ public class PlaneSwitcherFollow : MonoBehaviour
     
     [SerializeField] private GameObject _playerFollowY = null;
     
-    [SerializeField] private float _offsetOutwards = 0.7f;
+    [SerializeField] private float _offsetOutwards = 0.5f;
+    [SerializeField] private float _offsetWall = 0.51f;
 
     // private int _cooldown = 0;
     private bool _triggered = false;
 
     private void OnEnable()
     {
-        float offset = GameManager.Inst.TowerSize / 2 + _offsetOutwards;
+        float offsetOut = GameManager.Inst.TowerSize / 2 + _offsetOutwards;
+        float offsetWall = GameManager.Inst.TowerSize / 2 + _offsetWall;
 
-        SwitcherLeft.transform.localPosition = new Vector3(-offset, 0, -offset);
-        SwitcherRight.transform.localPosition = new Vector3(offset, 0, -offset);
+        SwitcherLeft.transform.localPosition = new Vector3(-offsetOut, 0, -offsetWall);
+        SwitcherRight.transform.localPosition = new Vector3(offsetOut, 0, -offsetWall);
 
-        _wallLeft.transform.localPosition = new Vector3(-offset-1, 0, -offset);
-        _wallRight.transform.localPosition = new Vector3(offset+1, 0, -offset);
+        _wallLeft.transform.localPosition = new Vector3(-offsetOut-1, 0, -offsetWall);
+        _wallRight.transform.localPosition = new Vector3(offsetOut+1, 0, -offsetWall);
     }
 
     private void FixedUpdate()

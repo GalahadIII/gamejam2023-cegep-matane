@@ -143,7 +143,8 @@ MonoBehaviour:
   _wallLeft: {fileID: 486030430372641110}
   _wallRight: {fileID: 5503392575912228125}
   _playerFollowY: {fileID: 0}
-  _offsetOutwards: 0.7
+  _offsetOutwards: 0.5
+  _offsetWall: 0.51
 --- !u!1001 &5530431223037171784
 PrefabInstance:
   m_ObjectHideFlags: 0
