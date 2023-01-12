@@ -87,6 +87,8 @@ public class GameManager : MonoBehaviour
 
     private void DoRotate()
     {
+        Debug.Log($"{Rotation.Quaternion.eulerAngles}");
+        
         transform.rotation = Rotation.Quaternion;
         
         CameraController.SetQuaternion(Rotation.Quaternion);

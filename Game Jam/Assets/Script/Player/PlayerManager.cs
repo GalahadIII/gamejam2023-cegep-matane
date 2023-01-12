@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 [RequireComponent(typeof(MovementController))]
@@ -27,6 +28,9 @@ public class PlayerManager : MonoBehaviour
 
     private void OnEnable()
     {
+        _targetRot = Quaternion.Euler(0,180,0);
+        Debug.Log($"OnEnable {_targetRot.eulerAngles}");
+        
         moveController = GetComponent<MovementController>();
         interactionModule = GetComponentInChildren<InteractionModule>();
     }
@@ -83,15 +87,15 @@ public class PlayerManager : MonoBehaviour
         moveController.FreezePosition(axis);
     }
 
-    private Quaternion _targetQuat = Quaternion.identity;
+    private Quaternion _targetRot;
     private float _rotationSpeed = 1;
     public void SetQuaternion(Quaternion quaternion, float rotationSpeed)
     {
         _rotationSpeed = rotationSpeed;
-        _targetQuat = quaternion;
+        _targetRot = Quaternion.Euler(0, 180 + quaternion.eulerAngles.y, 0);
     }
     private void Rotate()
     {
-        transform.rotation = Quaternion.Slerp(transform.rotation, _targetQuat, _rotationSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, _targetRot, _rotationSpeed * Time.deltaTime);
     }
 }
