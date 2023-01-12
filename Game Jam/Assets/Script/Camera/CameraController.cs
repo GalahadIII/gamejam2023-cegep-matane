@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
     private Quaternion targetQuat = Quaternion.identity;
     [SerializeField] public float rotationSpeed;
     [SerializeField] private float magnitude;
+    public float CameraMinHeight = 3;
 
     [SerializeField] private float duration;
 

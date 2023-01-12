@@ -1,3 +1,7 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 [RequireComponent(typeof(MovementController))]
@@ -34,6 +38,8 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
+        
+        GameManager.Inst.CameraController.SetPosY(Math.Max(transform.position.y, GameManager.Inst.CameraController.CameraMinHeight));
 
         if (moveController.Speed.magnitude > 0.1f)
         {
