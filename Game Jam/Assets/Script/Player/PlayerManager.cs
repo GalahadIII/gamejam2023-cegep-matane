@@ -11,7 +11,7 @@ public class PlayerManager : MonoBehaviour
 
     bool fallingLastFrame;
     public float distanceMort = 10f;
-    public int currentCheckpoint;
+    public Checkpoint CurrentCheckpoint;
 
     public GameObject modeleVivant;
     public GameObject deadBody;
