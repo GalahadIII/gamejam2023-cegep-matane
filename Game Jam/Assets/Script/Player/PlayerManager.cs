@@ -40,12 +40,12 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
-        if (GameManager.Inst.ConvertVector(moveController.Speed).x > 0)
+        if (GameManager.Inst.ConvertVector(moveController.Speed).x > 0 || GameManager.Inst.ConvertVector(moveController.Speed).z > 0)
         {
 
             transform.localScale = new Vector3(1, 1, 1);
         }
-        else if (GameManager.Inst.ConvertVector(moveController.Speed).x < 0)
+        else if (GameManager.Inst.ConvertVector(moveController.Speed).x < 0 || GameManager.Inst.ConvertVector(moveController.Speed).z < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
