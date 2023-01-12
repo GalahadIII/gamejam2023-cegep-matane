@@ -43,11 +43,6 @@ public class MovementController : MonoBehaviour
             _jumpToConsume = true;
             _frameJumpWasPressed = GameManager.Inst.FixedUpdateCount;
         }
-
-        if (_frameInput.Interact.OnDown)
-        {
-            _interactionModule.TriggerInteraction();
-        }
     }
     
     private void FixedUpdate()
