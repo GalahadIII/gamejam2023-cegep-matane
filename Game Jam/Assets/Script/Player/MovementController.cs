@@ -17,6 +17,8 @@ public class MovementController : MonoBehaviour
     private float _gravityScale;
     
     #region Public
+
+    public bool DisabledControls;
     
     public Vector2 Speed => _rb.velocity;
     public bool Falling => _rb.velocity.y < 0;
@@ -52,13 +54,9 @@ public class MovementController : MonoBehaviour
     
     private void FixedUpdate()
     {
-        // input dependant
-        //Flip();
+        if (DisabledControls) return;
         Horizontal();
         Jump();
-        //ArtificialFriction();
-        
-        // !input dependant
         GravityModifier();
     }
     
