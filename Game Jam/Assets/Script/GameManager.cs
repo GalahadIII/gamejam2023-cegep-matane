@@ -30,10 +30,13 @@ public class GameManager : MonoBehaviour
         
         // 
 
-        // Transform pT = Player.transform;
-        // Vector3 pos = pT.position;
-        // pos.z = -3;
-        // pT.position = ConvertVector(pos);
+        Transform pT = Player.transform;
+        Vector3 pos = pT.position;
+        if (TowerSide == TowerContext.South) pos.z = -3;
+        if (TowerSide == TowerContext.North) pos.z = 3;
+        if (TowerSide == TowerContext.East) pos.x = 3;
+        if (TowerSide == TowerContext.West) pos.x = -3;
+        pT.position = pos;
     }
 
     public Vector3 ConvertVector(Vector3 inputVector)
@@ -105,9 +108,6 @@ public class GameManager : MonoBehaviour
         Player.ResetVel();
         Transform pT = Player.transform;
         pT.rotation = Rotation.Quaternion;
-        Vector3 pos = ConvertVector(pT.position);
-        pos.z = -3;
-        pT.position = pos;
     }
     
 }
