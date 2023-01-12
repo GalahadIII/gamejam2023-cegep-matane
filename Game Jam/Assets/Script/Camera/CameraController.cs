@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -7,8 +5,9 @@ public class CameraController : MonoBehaviour
     public CameraShake cameraShake;
 
     // [SerializeField] private TowerContext facingDirection;
-    [SerializeField] private float degree;
-    [SerializeField] private float rotationSpeed;
+    // [SerializeField] private float degree;
+    // private Quaternion targetQuat = Quaternion.identity;
+    // [SerializeField] private float rotationSpeed;
     [SerializeField] private float magnitude;
 
     [SerializeField] private float duration;
@@ -29,27 +28,29 @@ public class CameraController : MonoBehaviour
         }
         // if (Input.GetKeyDown(KeyCode.RightArrow))
         // {
-        //
-        //
+        // if ((int)++TowerSide > 3) TowerSide = TowerContext.South;
+        // degree -= 90f;
         // }
         // else if (Input.GetKeyDown(KeyCode.LeftArrow))
         // {
+        // if ((int)--TowerSide < 0) TowerSide = TowerContext.West;
+        // degree += 90f;
         // }
-        Rotate();
+        // Rotate();
     }
 
-    public void PivotRight()
-    {
-        degree -= 90f;
-    }
-    public void PivotLeft()
-    {
-        degree += 90f;
-    }
-    private void Rotate()
-    {
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, degree, 0), rotationSpeed * Time.deltaTime);
-    }
+    // public void SetPos(Vector3 pos)
+    // {
+    //     transform.position += pos;
+    // }
+    // public void SetQuaternion(Quaternion quaternion)
+    // {
+    //     targetQuat = quaternion;
+    // }
+    // private void Rotate()
+    // {
+    //     transform.rotation = Quaternion.Slerp(transform.rotation, targetQuat, rotationSpeed * Time.deltaTime);
+    // }
 
     // private enum FacingDirection
     // {

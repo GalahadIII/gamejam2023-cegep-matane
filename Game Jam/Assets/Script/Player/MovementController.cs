@@ -29,7 +29,6 @@ public class MovementController : MonoBehaviour
     private void OnEnable()
     {
         _rb = GetComponent<Rigidbody>();
-        _interactionModule = GetComponentInChildren<InteractionModule>();
     }
 
     private void Update()
@@ -44,10 +43,6 @@ public class MovementController : MonoBehaviour
             _frameJumpWasPressed = _fixedUpdateCounter;
         }
 
-        if (_frameInput.Interact.OnDown)
-        {
-            _interactionModule.TriggerInteraction();
-        }
     }
     
     private void FixedUpdate()
@@ -71,7 +66,7 @@ public class MovementController : MonoBehaviour
         // calculate wanted direction and desired velocity
         float targetSpeed = (_frameInput.Movement2d.Live.x == 0 ? 0 : MathF.Sign(_frameInput.Movement2d.Live.x))  * _stats.MoveSpeed;
         // calculate difference between current volocity and target velocity
-        float speedDif = targetSpeed - _rb.velocity.x;
+        float speedDif = targetSpeed - GameManager.Inst.ConvertVector(_rb.velocity).x;
         // change acceleration rate depending on situations;
         float accelRate = Mathf.Abs(targetSpeed) > 0.01f ? _stats.Acceleration : _stats.Decceleration;
         // applies acceleration to speed difference, raise to a set power so acceleration increase with higher speed
@@ -79,6 +74,8 @@ public class MovementController : MonoBehaviour
         float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, _stats.VelPower) * Mathf.Sign(speedDif);
 
         // apply the movement force
+        Debug.Log($"{GameManager.Inst.ConvertVector(_rb.velocity)} {_rb.velocity}");
+        Debug.Log($"{movement * GameManager.Inst.ConvertVector(Vector2.right)}");
         _rb.AddForce(movement * GameManager.Inst.ConvertVector(Vector2.right));
     }
     #endregion

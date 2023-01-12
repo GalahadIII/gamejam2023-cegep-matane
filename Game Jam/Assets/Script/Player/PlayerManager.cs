@@ -7,7 +7,9 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     // Start is called before the first frame update=
-
+    private float _rotationSpeed = 5f;
+    private Quaternion _targetRotation = Quaternion.identity;
+    
     Vector3 positionChute;
 
     bool fallingLastFrame;
@@ -17,15 +19,17 @@ public class PlayerManager : MonoBehaviour
 
     public static bool isDead;
     MovementController moveController;
+    private InteractionModule _interactionModule;
 
-    void Start()
+    void OnEnable()
     {
         moveController = gameObject.GetComponent<MovementController>();
+        _interactionModule = GetComponentInChildren<InteractionModule>();
     }
     // Update is called once per frame
     void Update()
     {
-
+        Rotate();
 
         if (moveController.Falling && !fallingLastFrame)
         {
@@ -40,6 +44,10 @@ public class PlayerManager : MonoBehaviour
                 Die();
             }
         }
+        if (InputManager.PlayerInputs.Interact.OnDown)
+        {
+            _interactionModule.TriggerInteraction();
+        }
 
     }
     void LateUpdate()
@@ -52,4 +60,15 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("Dead");
         isDead = true;
     }
+    
+    public void SetQuaternion(Quaternion quaternion)
+    {
+        _targetRotation = quaternion;
+        // Debug.Log($"{_targetRotation.eulerAngles}");
+    }
+    private void Rotate()
+    {
+        transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, _rotationSpeed * Time.deltaTime);
+    }
+    
 }

@@ -15,6 +15,7 @@ public class ColliderDetector : MonoBehaviour
     {
         Vector3 position = transform.position;
         float lastClosestDistance = -1;
+        Closest = null;
 
         foreach (GameObject o in Objects)
         {

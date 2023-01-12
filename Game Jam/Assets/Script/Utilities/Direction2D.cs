@@ -1,18 +1,21 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Direction2D
 {
     public float Angle { get; }
     public Vector2 Direction { get; }
+    public Vector3 Axis { get; private set; } = Vector3.forward;
     public Quaternion Quaternion { get; private set; }
 
     public Direction2D(float angle)
     {
         Angle = angle;
         
-        Quaternion = Quaternion.AngleAxis(Angle, Vector3.forward);
+        Quaternion = Quaternion.AngleAxis(Angle, Axis);
         
-        Direction = Quaternion.AngleAxis(Angle, Vector3.forward) * Vector3.right;
+        Direction = Quaternion.AngleAxis(Angle, Axis) * Vector3.right;
     }
 
     public Direction2D(Vector2 direction)
@@ -21,7 +24,7 @@ public class Direction2D
         
         Angle = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
         
-        Quaternion = Quaternion.AngleAxis(Angle, Vector3.forward);
+        Quaternion = Quaternion.AngleAxis(Angle, Axis);
     }
     
     public Direction2D(Quaternion quaternion)
@@ -35,13 +38,14 @@ public class Direction2D
 
     public Direction2D ChangeQuaternionAxis(Vector3 axis)
     {
-        Quaternion = Quaternion.AngleAxis(Angle, axis);
+        Axis = axis;
+        Quaternion = Quaternion.AngleAxis(Angle, Axis);
         return this;
     }
 
     public Direction2D Add(float angle)
     {
-        return new Direction2D(Angle + angle);
+        return new Direction2D(Angle + angle).ChangeQuaternionAxis(Axis);
     }
 
     public Direction2D SpreadRandomized(float spreadRange)
@@ -51,6 +55,18 @@ public class Direction2D
         float diff = -offset + random;
 
         return Add(diff);
+    }
+
+    public static float ToAngle(TowerContext towerCtx)
+    {
+        return towerCtx switch
+        {
+            TowerContext.South => 0,
+            TowerContext.West => 90,
+            TowerContext.North => 180,
+            TowerContext.East => -90,
+            _ => throw new ArgumentOutOfRangeException()
+        };
     }
 
     public override string ToString()
