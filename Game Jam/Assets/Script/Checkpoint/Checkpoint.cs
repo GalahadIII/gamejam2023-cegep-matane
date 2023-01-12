@@ -22,7 +22,7 @@ public class Checkpoint : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             Debug.Log("Player hit cp");
-            PlayerManager.CurrentCheckpoint = checkpointId;
+            //PlayerManager.CurrentCheckpoint = checkpointId;
         }
     }
 }
