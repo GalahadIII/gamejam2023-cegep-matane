@@ -1,11 +1,8 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InteractionModule : MonoBehaviour
 {
-    private Collider col;
-
     [SerializeField] private List<GameObject> _objectsInRange = new();
     private bool _canInteract = false;
 
@@ -41,7 +38,7 @@ public class InteractionModule : MonoBehaviour
         _canInteract = false;
     }
     
-    private void TriggerInteraction()
+    public void TriggerInteraction()
     {
         _canInteract = true;
     }

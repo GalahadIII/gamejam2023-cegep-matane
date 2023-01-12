@@ -4,23 +4,40 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Inst { get; private set; }
+    private GameManager() { Inst = this; }
     private void OnEnable()
     {
         Inst = this;
     }
 
-    public TowerContext TowerSide { get; private set; } = TowerContext.South;
-    public Vector3 ConvertVector2(Vector2 inputVector2)
+    public int FixedUpdateCount { get; private set; } = 0;
+    public void FixedUpdate()
     {
-        float x = inputVector2.x;
-        float y = inputVector2.y;
+        FixedUpdateCount++;
+    }
+
+    public TowerContext TowerSide { get; private set; } = TowerContext.South;
+
+    public Vector3 ConvertVector(Vector3 inputVector)
+    {
+        return ConvertVector(inputVector, TowerSide);
+    }
+    public Vector3 ConvertVector(Vector2 inputVector)
+    {
+        return ConvertVector(inputVector, TowerSide);
+    }
+    public static Vector3 ConvertVector(Vector3 inputVector3, TowerContext towerSide)
+    {
+        float x = inputVector3.x;
+        float y = inputVector3.y;
+        float z = inputVector3.z;
         
-        return TowerSide switch
+        return towerSide switch
         {
-            TowerContext.North => new Vector3(-x, y, 0),
-            TowerContext.South => new Vector3(x, y, 0),
-            TowerContext.East => new Vector3(0, y, x),
-            TowerContext.West => new Vector3(0, y, -x),
+            TowerContext.North => new Vector3(-x, y, z),
+            TowerContext.South => new Vector3(x, y, -z),
+            TowerContext.East => new Vector3(z, y, x),
+            TowerContext.West => new Vector3(-z, y, -x),
             _ => throw new ArgumentOutOfRangeException()
         };
     }
@@ -32,6 +49,7 @@ public class GameManager : MonoBehaviour
     }
     private void TurnRight()
     {
+        Debug.Log("TurnRight");
         TowerSide = TowerSide switch
         {
             TowerContext.South => TowerContext.East,
@@ -43,6 +61,7 @@ public class GameManager : MonoBehaviour
     }
     private void TurnLeft()
     {
+        Debug.Log("TurnLeft");
         TowerSide = TowerSide switch
         {
             TowerContext.South => TowerContext.West,
