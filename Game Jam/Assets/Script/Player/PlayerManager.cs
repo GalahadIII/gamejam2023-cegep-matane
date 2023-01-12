@@ -49,7 +49,6 @@ public class PlayerManager : MonoBehaviour
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
-
         GameManager.Inst.CameraController.SetPosY(Math.Max(transform.position.y, GameManager.Inst.CameraController.CameraMinHeight));
 
         if (moveController.Speed.magnitude > 0.1f)
