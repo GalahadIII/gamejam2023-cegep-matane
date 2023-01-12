@@ -28,7 +28,7 @@ public class PlayerManager : MonoBehaviour
         interactionModule = GetComponentInChildren<InteractionModule>();
     }
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         Rotate();
         if (moveController.Falling && !fallingLastFrame)
@@ -46,17 +46,26 @@ public class PlayerManager : MonoBehaviour
         }
 
     }
-    void LateUpdate()
+    private void LateUpdate()
     {
         fallingLastFrame = moveController.Falling;
         isDead = false;
     }
-    void Die()
+    private void Die()
     {
         Debug.Log("Dead");
         modeleVivant.SetActive(false);
         deadBody.SetActive(true);
         isDead = true;
+    }
+    
+    [ContextMenu("Respawn")]
+    private void Respawn()
+    {
+        modeleVivant.SetActive(true);
+        deadBody.SetActive(false);
+        isDead = false;
+        gameObject.transform.position = CurrentCheckpoint.transform.position;
     }
 
     public void ResetVel()
