@@ -173,8 +173,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": 196.79991149902345,
-            "y": -35.199947357177737
+            "x": 639.2000122070313,
+            "y": -110.40003967285156
         },
         "m_Blocks": [
             {
@@ -342,7 +342,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "35354326a5524d0ca1df8cf77c5b6563",
     "m_Id": 0,
-    "m_DisplayName": "Color",
+    "m_DisplayName": "Outline",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -607,10 +607,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -239.08152770996095,
-            "y": 68.13514709472656,
-            "width": 0.0,
-            "height": 0.0
+            "x": 256.79998779296877,
+            "y": -37.59998321533203,
+            "width": 114.4000244140625,
+            "height": 33.59998321533203
         }
     },
     "m_Slots": [
@@ -748,10 +748,10 @@
     "m_Guid": {
         "m_GuidSerialized": "638aefd7-9cad-478a-9b43-e9ea421b875a"
     },
-    "m_Name": "Color",
+    "m_Name": "Outline",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Color",
-    "m_DefaultReferenceName": "_Color",
+    "m_RefNameGeneratedByDisplayName": "Outline",
+    "m_DefaultReferenceName": "_Outline",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -761,9 +761,9 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "r": 0.9056603908538818,
-        "g": 0.8150943517684937,
-        "b": 0.8150943517684937,
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0,
         "a": 0.0
     },
     "isMainColor": false,
@@ -1060,10 +1060,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 271.58001708984377,
-            "y": -994.8554077148438,
-            "width": 0.0,
-            "height": 0.0
+            "x": 171.19996643066407,
+            "y": -492.7999572753906,
+            "width": 207.99998474121095,
+            "height": 391.199951171875
         }
     },
     "m_Slots": [
