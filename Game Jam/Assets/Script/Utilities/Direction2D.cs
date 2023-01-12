@@ -4,8 +4,8 @@ using Random = UnityEngine.Random;
 
 public class Direction2D
 {
-    public float Angle { get; }
-    public Vector2 Direction { get; }
+    public float Angle { get; private set; }
+    public Vector2 Direction { get; private set; }
     public Vector3 Axis { get; private set; } = Vector3.forward;
     public Quaternion Quaternion { get; private set; }
 
@@ -43,9 +43,22 @@ public class Direction2D
         return this;
     }
 
+    public Direction2D SetAngle(float angle)
+    {
+        Angle = angle;
+        while (Angle is < 0 or > 360)
+        {
+            if (Angle > 360) Angle -= 360;
+            if (Angle < 0) Angle += 360;
+        }
+
+        Quaternion = Quaternion.AngleAxis(Angle, Axis);
+        return this;
+    }
+
     public Direction2D Add(float angle)
     {
-        return new Direction2D(Angle + angle).ChangeQuaternionAxis(Axis);
+        return SetAngle(Angle + angle);
     }
 
     public Direction2D SpreadRandomized(float spreadRange)
