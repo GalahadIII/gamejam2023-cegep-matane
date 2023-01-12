@@ -23,7 +23,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (PlayerManager.isDead)
         {
             StartCoroutine(cameraShake.Shake(duration, magnitude));
         }
