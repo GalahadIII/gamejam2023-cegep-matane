@@ -21,7 +21,7 @@ public class MovementController : MonoBehaviour
 
     public bool DisabledControls;
 
-    public Vector2 Speed => _rb.velocity;
+    public Vector2 Speed => new Vector2(_rb.velocity.x, _rb.velocity.z);
     public bool Falling => _rb.velocity.y < 0;
     public bool Jumping => _rb.velocity.y > 0;
     public bool FacingRight => _facingRight;
@@ -162,4 +162,4 @@ public class MovementController : MonoBehaviour
     }
 }
 
-public enum FreezePositionAxis { X,Z }
+public enum FreezePositionAxis { X, Z }

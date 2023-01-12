@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
+    public float CamHeight;
     
     private void Start()
     {
