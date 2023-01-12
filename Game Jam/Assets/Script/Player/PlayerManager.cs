@@ -33,7 +33,7 @@ public class PlayerManager : MonoBehaviour
     private void OnEnable()
     {
         _targetRot = Quaternion.Euler(0, 180, 0);
-        Debug.Log($"OnEnable {_targetRot.eulerAngles}");
+        // Debug.Log($"OnEnable {_targetRot.eulerAngles}");
 
         moveController = GetComponent<MovementController>();
         interactionModule = GetComponentInChildren<InteractionModule>();
