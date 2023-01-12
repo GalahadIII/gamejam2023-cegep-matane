@@ -56,6 +56,15 @@ public class PlayerManager : MonoBehaviour
         deadBody.SetActive(true);
         isDead = true;
     }
+    
+    [ContextMenu("Respawn")]
+    private void Respawn()
+    {
+        modeleVivant.SetActive(true);
+        deadBody.SetActive(false);
+        isDead = false;
+        gameObject.transform.position = CurrentCheckpoint.transform.position;
+    }
 
     public void ResetVel()
     {

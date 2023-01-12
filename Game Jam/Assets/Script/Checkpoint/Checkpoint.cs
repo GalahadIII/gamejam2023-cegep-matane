@@ -18,7 +18,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player hit cp");
+            Debug.Log(gameObject.name);
             GameManager.Inst.Player.CurrentCheckpoint = this;
         }
     }
