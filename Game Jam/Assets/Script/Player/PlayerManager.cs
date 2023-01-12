@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    
     Vector3 positionChute;
 
     bool fallingLastFrame;
@@ -17,14 +18,15 @@ public class PlayerManager : MonoBehaviour
     public MovementController moveController;
     public InteractionModule interactionModule;
 
-    void Start()
+    void OnEnable()
     {
-        moveController = gameObject.GetComponent<MovementController>();
+        moveController = GetComponent<MovementController>();
         interactionModule = GetComponentInChildren<InteractionModule>();
     }
     // Update is called once per frame
     void Update()
     {
+        Rotate();
         if (moveController.Falling && !fallingLastFrame)
         {
             //commence a tomber
@@ -59,5 +61,17 @@ public class PlayerManager : MonoBehaviour
     public void FreezePosition(FreezePositionAxis axis)
     {
         moveController.FreezePosition(axis);
+    }
+    
+    private Quaternion _targetQuat = Quaternion.identity;
+    private float _rotationSpeed = 1;
+    public void SetQuaternion(Quaternion quaternion, float rotationSpeed)
+    {
+        _rotationSpeed = rotationSpeed;
+        _targetQuat = quaternion;
+    }
+    private void Rotate()
+    {
+        transform.rotation = Quaternion.Slerp(transform.rotation, _targetQuat, _rotationSpeed * Time.deltaTime);
     }
 }

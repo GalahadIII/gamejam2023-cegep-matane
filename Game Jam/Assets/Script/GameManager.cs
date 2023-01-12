@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public int FixedUpdateCount { get; private set; } = 0;
 
     public Direction2D Rotation = new Direction2D(0).ChangeQuaternionAxis(Vector3.up);
+    public float TowerSize = 5;
     public TowerContext TowerSide { get; private set; } = TowerContext.South;
     public float PlayerTowerDistance = 3;
 
@@ -108,11 +109,12 @@ public class GameManager : MonoBehaviour
         
         CameraController.SetQuaternion(Rotation.Quaternion);
         
+        Player.SetQuaternion(Rotation.Quaternion, CameraController.rotationSpeed);
         Player.ResetVel();
         Player.FreezePosition(TowerContextToFreezePosition(TowerSide));
         
         Transform pT = Player.transform;
-        pT.rotation = Rotation.Quaternion;
+        // pT.rotation = Rotation.Quaternion;
         
         Vector3 pos = pT.position;
         if (TowerSide == TowerContext.South) pos.z = -PlayerTowerDistance;

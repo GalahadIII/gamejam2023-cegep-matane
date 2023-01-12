@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
     // [SerializeField] private TowerContext facingDirection;
     // [SerializeField] private float degree;
     private Quaternion targetQuat = Quaternion.identity;
-    [SerializeField] private float rotationSpeed;
+    [SerializeField] public float rotationSpeed;
     [SerializeField] private float magnitude;
 
     [SerializeField] private float duration;
