@@ -9,8 +9,8 @@ public class MovementController : MonoBehaviour
     private Rigidbody _rb;
     private PlayerInputs _frameInput;
     private InteractionModule _interactionModule;
-
-    private int _fixedUpdateCounter;
+    private SphereCollider _feetCollider;
+    
     private bool _hasControl;
     private bool _grounded;
     private bool _facingRight;
@@ -29,18 +29,19 @@ public class MovementController : MonoBehaviour
     private void OnEnable()
     {
         _rb = GetComponent<Rigidbody>();
+        _feetCollider = GetComponentInChildren<SphereCollider>();
     }
 
     private void Update()
     {
         _frameInput = InputManager.PlayerInputs;
-
-        _grounded = true;
         
+        IsGrounded();
+        Debug.Log(_grounded);
         if (_frameInput.Jump.OnDown)
         {
             _jumpToConsume = true;
-            _frameJumpWasPressed = _fixedUpdateCounter;
+            _frameJumpWasPressed = GameManager.Inst.FixedUpdateCount;
         }
 
         if (_frameInput.Interact.OnDown)
@@ -51,8 +52,6 @@ public class MovementController : MonoBehaviour
     
     private void FixedUpdate()
     {
-        _fixedUpdateCounter++;
-
         // input dependant
         //Flip();
         Horizontal();
@@ -62,7 +61,27 @@ public class MovementController : MonoBehaviour
         // !input dependant
         GravityModifier();
     }
+    
+    
+    #region Checks
 
+    private void IsGrounded()
+    {
+        bool groundedLive = Physics.Raycast(transform.position, Vector3.down, 1.01f, _groundLayerMask);
+        if (!groundedLive && _grounded)
+        {
+            _frameLeftGround = GameManager.Inst.FixedUpdateCount;
+        }
+        else if (groundedLive && !_grounded)
+        {
+             ResetJump();
+        }
+             
+        _grounded = groundedLive;
+    }
+
+    #endregion
+    
     #region Horizontal
 
     private void Horizontal()
@@ -84,39 +103,34 @@ public class MovementController : MonoBehaviour
     
     #region Jump
 
-     private bool _jumpToConsume;
-     private int _frameJumpWasPressed;
-     private int _frameLeftGround;
+    private bool _jumpToConsume;
+    private int _frameJumpWasPressed;
+    private int _frameLeftGround;
 
-     private bool _bufferedJumpUsable;
-     private bool _coyoteUsable;
+    private bool _bufferedJumpUsable;
+    private bool _coyoteUsable;
      
      
-     private bool HasBufferedJump =>
-         _bufferedJumpUsable && _fixedUpdateCounter < _frameJumpWasPressed + _stats.JumpBufferFrame;
-     private bool CanUseCoyote => 
-         _coyoteUsable && !_grounded && _fixedUpdateCounter < _frameLeftGround + _stats.JumpCoyoteFrame;
+    private bool HasBufferedJump =>
+         _bufferedJumpUsable && GameManager.Inst.FixedUpdateCount < _frameJumpWasPressed + _stats.JumpBufferFrame;
+    private bool CanUseCoyote => 
+         _coyoteUsable && !_grounded && GameManager.Inst.FixedUpdateCount < _frameLeftGround + _stats.JumpCoyoteFrame;
 
-     private void Jump()
-     {
-         // if (_jumpToConsume || HasBufferedJump)
-         // {
-         //     if (_grounded || CanUseCoyote) NormalJump();
-         // }
-         // _jumpToConsume = false;
-         if (_jumpToConsume)
-         {
-             NormalJump();
-         }
-         _jumpToConsume = false;
-     }
+    private void Jump()
+    {
+        if (_jumpToConsume || HasBufferedJump)
+        {
+            if (_grounded || CanUseCoyote) NormalJump();
+        }
+        _jumpToConsume = false;
+    }
 
-     private void NormalJump()
-     {
-         _coyoteUsable = false;
-         _bufferedJumpUsable = false;
-         _rb.velocity = new Vector2(_rb.velocity.x, 0);
-         _rb.AddForce(Vector2.up * _stats.JumpForce, ForceMode.Impulse);
+    private void NormalJump()
+    {
+        _coyoteUsable = false;
+        _bufferedJumpUsable = false;
+        _rb.velocity = new Vector2(_rb.velocity.x, 0);
+        _rb.AddForce(Vector2.up * _stats.JumpForce, ForceMode.Impulse);
      }
 
      private void ResetJump()
