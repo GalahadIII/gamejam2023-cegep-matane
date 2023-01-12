@@ -40,16 +40,16 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
-        if (GameManager.Inst.ConvertVector(moveController.Speed).x > 0 || GameManager.Inst.ConvertVector(moveController.Speed).z > 0)
-        {
-
-            transform.localScale = new Vector3(1, 1, 1);
-        }
-        else if (GameManager.Inst.ConvertVector(moveController.Speed).x < 0 || GameManager.Inst.ConvertVector(moveController.Speed).z < 0)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-        GameManager.Inst.CameraController.SetPosY(Math.Max(transform.position.y, GameManager.Inst.CameraController.CameraMinHeight));
+        Transform t = transform;
+        
+        float velX = GameManager.Inst.ConvertVector(moveController.Speed).x;
+        // Vector3 vel = moveController.Speed;
+        Vector3 newScale = new (Mathf.Sign(velX), 1, 1);
+        t.localScale = newScale;
+        // t.localScale = GameManager.Inst.ConvertVector(newScale, true);
+        // Debug.Log($"{velX} {newScale} {t.localScale}");
+        
+        GameManager.Inst.CameraController.SetPosY(Math.Max(t.position.y, GameManager.Inst.CameraController.CameraMinHeight));
 
         if (moveController.Speed.magnitude > 0.1f)
         {
@@ -65,12 +65,12 @@ public class PlayerManager : MonoBehaviour
         if (moveController.Falling && !fallingLastFrame)
         {
             //commence a tomber
-            positionChute = transform.position;
+            positionChute = t.position;
         }
         else if (!moveController.Falling && fallingLastFrame)
         {
             //on a touche le sol
-            if (positionChute.y - transform.position.y > distanceMort)
+            if (positionChute.y - t.position.y > distanceMort)
             {
                 Die();
             }

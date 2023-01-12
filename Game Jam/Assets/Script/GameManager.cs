@@ -33,24 +33,26 @@ public class GameManager : MonoBehaviour
     {
         return ConvertVector(inputVector, TowerSide);
     }
-    public static Vector3 ConvertVector(Vector3 inputVector3, TowerContext towerSide, bool toWorld = false)
+    public static Vector3 ConvertVector(Vector3 inputVector3, TowerContext towerSide)
     {
-        // Vector3 transformedVector = towerSide switch
-        // {
-        //     TowerContext.North => new Vector3(-inputVector3.x, inputVector3.y, inputVector3.z),
-        //     TowerContext.South => new Vector3(inputVector3.x, inputVector3.y, -inputVector3.z),
-        //     TowerContext.East => new Vector3(inputVector3.z, inputVector3.y, inputVector3.x),
-        //     TowerContext.West => new Vector3(-inputVector3.z, inputVector3.y, -inputVector3.x),
-        //     _ => throw new ArgumentOutOfRangeException()
-        // };
-        float angle = Direction2D.ToAngle(towerSide) * (toWorld ? -1 : 1);
-        Direction2D dir = new Direction2D(angle).ChangeQuaternionAxis(Vector3.up);
-        
-        Vector3 pivotedVector = dir.Quaternion * inputVector3;
-        
+        Vector3 transformedVector = towerSide switch
+        {
+            TowerContext.North => new Vector3(-inputVector3.x, inputVector3.y, inputVector3.z),
+            TowerContext.South => new Vector3(inputVector3.x, inputVector3.y, -inputVector3.z),
+            TowerContext.East => new Vector3(inputVector3.z, inputVector3.y, inputVector3.x),
+            TowerContext.West => new Vector3(-inputVector3.z, inputVector3.y, -inputVector3.x),
+            _ => throw new ArgumentOutOfRangeException()
+        };
+        // float angle = Direction2D.ToAngle(towerSide) * (toWorld ? -1 : 1);
+        // Direction2D dir = new Direction2D(angle).ChangeQuaternionAxis(Vector3.up);
+        // Debug.Log($"{dir.Quaternion.eulerAngles}");
+        //
+        // Vector3 pivotedVector = dir.Quaternion * inputVector3;
+        //
         // Debug.Log($"{transformedVector} {pivotedVector}");
-        
-        return pivotedVector;
+
+        return transformedVector;
+        // return pivotedVector;
     }
 
     public void TurnRight()
