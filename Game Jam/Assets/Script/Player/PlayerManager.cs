@@ -11,6 +11,9 @@ public class PlayerManager : MonoBehaviour
     bool fallingLastFrame;
     public float distanceMort = 10f;
 
+    public GameObject modeleVivant;
+    public GameObject deadBody;
+
     float distanceChute;
 
     public static bool isDead;
@@ -48,6 +51,8 @@ public class PlayerManager : MonoBehaviour
     void Die()
     {
         Debug.Log("Dead");
+        modeleVivant.SetActive(false);
+        deadBody.SetActive(true);
         isDead = true;
     }
 
