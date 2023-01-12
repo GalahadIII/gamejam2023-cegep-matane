@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    
+
     Vector3 positionChute;
 
     bool fallingLastFrame;
@@ -15,6 +15,8 @@ public class PlayerManager : MonoBehaviour
 
     public GameObject modeleVivant;
     public GameObject deadBody;
+    public GameObject outlineVivant;
+    public GameObject outlineDead;
 
     float distanceChute;
 
@@ -56,6 +58,9 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("Dead");
         modeleVivant.SetActive(false);
         deadBody.SetActive(true);
+        outlineVivant.SetActive(false);
+        outlineDead.SetActive(true);
+
         isDead = true;
     }
 
@@ -68,7 +73,7 @@ public class PlayerManager : MonoBehaviour
     {
         moveController.FreezePosition(axis);
     }
-    
+
     private Quaternion _targetQuat = Quaternion.identity;
     private float _rotationSpeed = 1;
     public void SetQuaternion(Quaternion quaternion, float rotationSpeed)
