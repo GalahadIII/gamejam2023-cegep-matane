@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.NetworkInformation;
 using UnityEngine;
 
-public enum PlaneSwitchDirection{Left, Right}
 public class PlaneSwitcherFollow : MonoBehaviour
 {
 
@@ -50,17 +48,16 @@ public class PlaneSwitcherFollow : MonoBehaviour
         
         foreach (GameObject o in _switcherLeft.Objects.Where(o => o.CompareTag("Player")))
         {
-            PlayerDetected(o,_switcherLeft);
+            PlayerDetected(o, _switcherLeft);
             GameManager.Inst.TurnLeft();
             return;
         }
         foreach (GameObject o in _switcherRight.Objects.Where(o => o.CompareTag("Player")))
         {
-            PlayerDetected(o,_switcherRight);
+            PlayerDetected(o, _switcherRight);
             GameManager.Inst.TurnRight();
             return;
         }
-
     }
 
     private void PlayerDetected(GameObject player, Component detector)

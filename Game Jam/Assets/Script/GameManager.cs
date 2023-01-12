@@ -10,15 +10,15 @@ public class GameManager : MonoBehaviour
         Inst = this;
     }
     
-    [SerializeField] public PlayerManager Player;
-    [SerializeField] public CameraController CameraController;
+    public PlayerManager Player;
+    public CameraController CameraController;
     
     public int FixedUpdateCount { get; private set; } = 0;
 
     public Direction2D Rotation = new Direction2D(0).ChangeQuaternionAxis(Vector3.up);
     public float TowerSize = 5;
     public TowerContext TowerSide { get; private set; } = TowerContext.South;
-    public float PlayerTowerDistance = 3;
+    public float PlayerTowerDistance { get; private set; } = 3.5f;
 
     public void Update()
     {
@@ -113,15 +113,15 @@ public class GameManager : MonoBehaviour
         Player.ResetVel();
         Player.FreezePosition(TowerContextToFreezePosition(TowerSide));
         
-        Transform pT = Player.transform;
+        // Transform pT = Player.transform;
         // pT.rotation = Rotation.Quaternion;
         
-        Vector3 pos = pT.position;
-        if (TowerSide == TowerContext.South) pos.z = -PlayerTowerDistance;
-        else if (TowerSide == TowerContext.North) pos.z = PlayerTowerDistance;
-        else if (TowerSide == TowerContext.East) pos.x = PlayerTowerDistance;
-        else if (TowerSide == TowerContext.West) pos.x = -PlayerTowerDistance;
-        pT.position = pos;
+        // Vector3 pos = pT.position;
+        // if (TowerSide == TowerContext.South) pos.z = -PlayerTowerDistance;
+        // else if (TowerSide == TowerContext.North) pos.z = PlayerTowerDistance;
+        // else if (TowerSide == TowerContext.East) pos.x = PlayerTowerDistance;
+        // else if (TowerSide == TowerContext.West) pos.x = -PlayerTowerDistance;
+        // pT.position = pos;
     }
 
     private static FreezePositionAxis TowerContextToFreezePosition(TowerContext towerContext)
