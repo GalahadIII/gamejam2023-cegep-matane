@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 597519205483146724}
-  - component: {fileID: 8594770063185452902}
+  - component: {fileID: -3629740000328203938}
   - component: {fileID: 7890138474466087845}
   m_Layer: 0
   m_Name: PlaneSwitcher
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8594770063185452902
+--- !u!114 &-3629740000328203938
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,12 +42,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8326633616522896699}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc215f2e26914b198179fb6cd205ec54, type: 3}
+  m_Script: {fileID: 11500000, guid: 8fcff277a0584f93bdb8f6e6493f3b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Objects: []
   Closest: {fileID: 0}
-  _planeSwitchDirection: 1
 --- !u!65 &7890138474466087845
 BoxCollider:
   m_ObjectHideFlags: 0
