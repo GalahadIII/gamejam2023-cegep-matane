@@ -64,6 +64,8 @@ public class InputManager : MonoBehaviour
 
         _playerInputs.CursorPosition = _cursorPosition.ReadValue<Vector2>();
         
+        //
+        
         KeyInputDataUpdate(ref _playerInputs.Jump, _moveUp.ReadValue<float>() != 0f);
 
         KeyInputDataUpdate(ref _playerInputs.Interact, _interaction.ReadValue<float>() != 0f);
