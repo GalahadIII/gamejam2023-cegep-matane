@@ -20,6 +20,8 @@ public class PlayerManager : MonoBehaviour
 
     public GameObject outlineVivant;
 
+    private Vector3 direction;
+
 
 
     float distanceChute;
@@ -30,20 +32,34 @@ public class PlayerManager : MonoBehaviour
 
     private void OnEnable()
     {
-        _targetRot = Quaternion.Euler(0,180,0);
+        _targetRot = Quaternion.Euler(0, 180, 0);
         Debug.Log($"OnEnable {_targetRot.eulerAngles}");
-        
+
         moveController = GetComponent<MovementController>();
         interactionModule = GetComponentInChildren<InteractionModule>();
     }
     private void Update()
     {
+<<<<<<< HEAD
+        if (GameManager.Inst.ConvertVector(moveController.Speed).x > 0)
+        {
+
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if (GameManager.Inst.ConvertVector(moveController.Speed).x < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+=======
         
         GameManager.Inst.CameraController.SetPosY(Math.Max(transform.position.y, GameManager.Inst.CameraController.CameraMinHeight));
+>>>>>>> 1b85d5495c421da5a3b8c56790d4b999c3776784
 
         if (moveController.Speed.magnitude > 0.1f)
         {
+
             animator.SetBool("isWalking", true);
+
         }
         else
         {
