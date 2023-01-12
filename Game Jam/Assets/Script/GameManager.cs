@@ -18,56 +18,38 @@ public class GameManager : MonoBehaviour
     public Direction2D Rotation = new Direction2D(0).ChangeQuaternionAxis(Vector3.up);
     public float TowerSize = 5;
     public TowerContext TowerSide { get; private set; } = TowerContext.South;
-    public float PlayerTowerDistance { get; private set; } = 3.5f;
-
-    public void Update()
-    {
-        // Debug.Log($"{Rotation.Quaternion.eulerAngles} {Rotation.Axis}");
-        // Debug.Log($"{Rotation.Add(90).Quaternion.eulerAngles} {Rotation.Add(90).Axis}");
-    }
+    public float PlayerTowerDistance = 3.5f;
 
     public void FixedUpdate()
     {
         FixedUpdateCount++;
-        
-        //
-
-        // Transform pT = Player.transform;
-        // Vector3 pos = pT.position;
-        // if (TowerSide == TowerContext.South) pos.z = -PlayerTowerDistance;
-        // if (TowerSide == TowerContext.North) pos.z = PlayerTowerDistance;
-        // if (TowerSide == TowerContext.East) pos.x = PlayerTowerDistance;
-        // if (TowerSide == TowerContext.West) pos.x = -PlayerTowerDistance;
-        // pT.position = pos;
     }
 
     public Vector3 ConvertVector(Vector3 inputVector)
     {
-        // Debug.Log($"{Rotation.Quaternion.eulerAngles} {Rotation.Quaternion * inputVector} {inputVector}");
-        return Rotation.Quaternion * inputVector;
-        // Debug.Log($"VAR");
-        // return ConvertVector(inputVector, TowerSide);
+        return ConvertVector(inputVector, TowerSide);
     }
     public Vector3 ConvertVector(Vector2 inputVector)
     {
-        return Rotation.Quaternion * inputVector;
-        // return ConvertVector(inputVector, TowerSide);
+        return ConvertVector(inputVector, TowerSide);
     }
     public static Vector3 ConvertVector(Vector3 inputVector3, TowerContext towerSide)
     {
-        return new Direction2D(Direction2D.ToAngle(towerSide)).ChangeQuaternionAxis(Vector3.up).Quaternion * inputVector3;
-        // float x = inputVector3.x;
-        // float y = inputVector3.y;
-        // float z = inputVector3.z;
-        //
-        // return towerSide switch
+        // Vector3 transformedVector = towerSide switch
         // {
-        //     TowerContext.North => new Vector3(-x, y, z),
-        //     TowerContext.South => new Vector3(x, y, -z),
-        //     TowerContext.East => new Vector3(z, y, x),
-        //     TowerContext.West => new Vector3(-z, y, -x),
+        //     TowerContext.North => new Vector3(-inputVector3.x, inputVector3.y, inputVector3.z),
+        //     TowerContext.South => new Vector3(inputVector3.x, inputVector3.y, -inputVector3.z),
+        //     TowerContext.East => new Vector3(inputVector3.z, inputVector3.y, inputVector3.x),
+        //     TowerContext.West => new Vector3(-inputVector3.z, inputVector3.y, -inputVector3.x),
         //     _ => throw new ArgumentOutOfRangeException()
         // };
+        
+        Direction2D dir = new Direction2D(Direction2D.ToAngle(towerSide)).ChangeQuaternionAxis(Vector3.up);
+        Vector3 pivotedVector = dir.Quaternion * inputVector3;
+        
+        // Debug.Log($"{transformedVector} {pivotedVector}");
+        
+        return pivotedVector;
     }
 
     public void TurnRight()
@@ -112,16 +94,6 @@ public class GameManager : MonoBehaviour
         Player.SetQuaternion(Rotation.Quaternion, CameraController.rotationSpeed);
         Player.ResetVel();
         Player.FreezePosition(TowerContextToFreezePosition(TowerSide));
-        
-        // Transform pT = Player.transform;
-        // pT.rotation = Rotation.Quaternion;
-        
-        // Vector3 pos = pT.position;
-        // if (TowerSide == TowerContext.South) pos.z = -PlayerTowerDistance;
-        // else if (TowerSide == TowerContext.North) pos.z = PlayerTowerDistance;
-        // else if (TowerSide == TowerContext.East) pos.x = PlayerTowerDistance;
-        // else if (TowerSide == TowerContext.West) pos.x = -PlayerTowerDistance;
-        // pT.position = pos;
     }
 
     private static FreezePositionAxis TowerContextToFreezePosition(TowerContext towerContext)
