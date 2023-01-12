@@ -40,29 +40,29 @@ public class GameManager : MonoBehaviour
     {
         // Debug.Log($"{Rotation.Quaternion.eulerAngles} {Rotation.Quaternion * inputVector} {inputVector}");
         return Rotation.Quaternion * inputVector;
-        Debug.Log($"VAR");
-        return ConvertVector(inputVector, TowerSide);
+        // Debug.Log($"VAR");
+        // return ConvertVector(inputVector, TowerSide);
     }
     public Vector3 ConvertVector(Vector2 inputVector)
     {
         return Rotation.Quaternion * inputVector;
-        return ConvertVector(inputVector, TowerSide);
+        // return ConvertVector(inputVector, TowerSide);
     }
     public static Vector3 ConvertVector(Vector3 inputVector3, TowerContext towerSide)
     {
         return new Direction2D(Direction2D.ToAngle(towerSide)).ChangeQuaternionAxis(Vector3.up).Quaternion * inputVector3;
-        float x = inputVector3.x;
-        float y = inputVector3.y;
-        float z = inputVector3.z;
-        
-        return towerSide switch
-        {
-            TowerContext.North => new Vector3(-x, y, z),
-            TowerContext.South => new Vector3(x, y, -z),
-            TowerContext.East => new Vector3(z, y, x),
-            TowerContext.West => new Vector3(-z, y, -x),
-            _ => throw new ArgumentOutOfRangeException()
-        };
+        // float x = inputVector3.x;
+        // float y = inputVector3.y;
+        // float z = inputVector3.z;
+        //
+        // return towerSide switch
+        // {
+        //     TowerContext.North => new Vector3(-x, y, z),
+        //     TowerContext.South => new Vector3(x, y, -z),
+        //     TowerContext.East => new Vector3(z, y, x),
+        //     TowerContext.West => new Vector3(-z, y, -x),
+        //     _ => throw new ArgumentOutOfRangeException()
+        // };
     }
 
     public void TurnRight()
@@ -105,9 +105,9 @@ public class GameManager : MonoBehaviour
         Player.ResetVel();
         Transform pT = Player.transform;
         pT.rotation = Rotation.Quaternion;
-        Vector3 pos = pT.position;
+        Vector3 pos = ConvertVector(pT.position);
         pos.z = -3;
-        pT.position = ConvertVector(pos);
+        pT.position = pos;
     }
     
 }
