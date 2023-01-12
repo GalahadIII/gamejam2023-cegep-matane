@@ -9,8 +9,7 @@ public class MovementController : MonoBehaviour
     private Rigidbody _rb;
     private PlayerInputs _frameInput;
     private InteractionModule _interactionModule;
-    private SphereCollider _feetCollider;
-    
+
     private bool _hasControl;
     private bool _grounded;
     private bool _facingRight;
@@ -31,7 +30,6 @@ public class MovementController : MonoBehaviour
     private void OnEnable()
     {
         _rb = GetComponent<Rigidbody>();
-        _feetCollider = GetComponentInChildren<SphereCollider>();
     }
 
     private void Update()
