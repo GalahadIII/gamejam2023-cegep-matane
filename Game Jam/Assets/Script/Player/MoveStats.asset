@@ -21,4 +21,4 @@ MonoBehaviour:
   JumpCutMultiplier: 0
   JumpCoyoteFrame: 10
   JumpBufferFrame: 10
-  FallGravityForce: 20
+  FallGravityForce: 15
