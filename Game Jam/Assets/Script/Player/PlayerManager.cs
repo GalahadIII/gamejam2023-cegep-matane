@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    // Start is called before the first frame update=
-
     Vector3 positionChute;
 
     bool fallingLastFrame;
@@ -27,8 +25,6 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
         if (moveController.Falling && !fallingLastFrame)
         {
             //commence a tomber
@@ -53,5 +49,10 @@ public class PlayerManager : MonoBehaviour
     {
         Debug.Log("Dead");
         isDead = true;
+    }
+
+    public void ResetVel()
+    {
+        moveController.ResetVelocity();
     }
 }

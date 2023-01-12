@@ -6,8 +6,8 @@ public class CameraController : MonoBehaviour
 
     // [SerializeField] private TowerContext facingDirection;
     // [SerializeField] private float degree;
-    // private Quaternion targetQuat = Quaternion.identity;
-    // [SerializeField] private float rotationSpeed;
+    private Quaternion targetQuat = Quaternion.identity;
+    [SerializeField] private float rotationSpeed;
     [SerializeField] private float magnitude;
 
     [SerializeField] private float duration;
@@ -43,14 +43,14 @@ public class CameraController : MonoBehaviour
     // {
     //     transform.position += pos;
     // }
-    // public void SetQuaternion(Quaternion quaternion)
-    // {
-    //     targetQuat = quaternion;
-    // }
-    // private void Rotate()
-    // {
-    //     transform.rotation = Quaternion.Slerp(transform.rotation, targetQuat, rotationSpeed * Time.deltaTime);
-    // }
+    public void SetQuaternion(Quaternion quaternion)
+    {
+        targetQuat = quaternion;
+    }
+    private void Rotate()
+    {
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetQuat, rotationSpeed * Time.deltaTime);
+    }
 
     // private enum FacingDirection
     // {

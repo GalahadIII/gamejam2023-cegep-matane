@@ -14,6 +14,7 @@ public class PlaneSwitcherFollow : MonoBehaviour
     [SerializeField] private float _towerSize = 5;
     [SerializeField] private float _offsetOutwards = 0.7f;
 
+    private int _cooldown = 0;
     private bool _triggered = false;
 
     private void OnEnable()
@@ -26,6 +27,8 @@ public class PlaneSwitcherFollow : MonoBehaviour
 
     private void FixedUpdate()
     {
+        _cooldown++;
+        
         if (_playerFollowY != null)
         {
             Vector3 pos = Vector3.zero;
@@ -35,6 +38,7 @@ public class PlaneSwitcherFollow : MonoBehaviour
             
         transform.rotation = GameManager.Inst.Rotation.Quaternion;
             // transform.rotation = new Direction2D(_playerFollowY.transform.rotation).ChangeQuaternionAxis(Vector3.up).Quaternion;
+        if (_cooldown < 50) return;
 
         List<GameObject> obj = new();
         obj.AddRange(_switcherLeft.Objects);
@@ -46,12 +50,14 @@ public class PlaneSwitcherFollow : MonoBehaviour
         
         foreach (GameObject o in _switcherLeft.Objects.Where(o => o.CompareTag("Player")))
         {
+            _cooldown = 0;
             GameManager.Inst.TurnLeft();
             _triggered = true;
             return;
         }
         foreach (GameObject o in _switcherRight.Objects.Where(o => o.CompareTag("Player")))
         {
+            _cooldown = 0;
             GameManager.Inst.TurnRight();
             _triggered = true;
             return;

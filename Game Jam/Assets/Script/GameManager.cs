@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     }
     
     [SerializeField] public PlayerManager Player;
-    // [SerializeField] public CameraController CameraController;
+    [SerializeField] public CameraController CameraController;
     
     public int FixedUpdateCount { get; private set; } = 0;
 
@@ -30,15 +30,17 @@ public class GameManager : MonoBehaviour
         
         // 
 
-        Transform pT = Player.transform;
-        Vector3 pos = pT.position;
-        pos.z = -3;
-        pT.position = ConvertVector(pos);
+        // Transform pT = Player.transform;
+        // Vector3 pos = pT.position;
+        // pos.z = -3;
+        // pT.position = ConvertVector(pos);
     }
 
     public Vector3 ConvertVector(Vector3 inputVector)
     {
+        // Debug.Log($"{Rotation.Quaternion.eulerAngles} {Rotation.Quaternion * inputVector} {inputVector}");
         return Rotation.Quaternion * inputVector;
+        Debug.Log($"VAR");
         return ConvertVector(inputVector, TowerSide);
     }
     public Vector3 ConvertVector(Vector2 inputVector)
@@ -65,12 +67,11 @@ public class GameManager : MonoBehaviour
 
     public void TurnRight()
     {
-        Debug.Log("TurnRight");
+        // Debug.Log("TurnRight");
         if ((int)++TowerSide > 3) TowerSide = TowerContext.South;
         Rotation = Rotation.Add(-90);
+        DoRotate();
         // CameraController.SetQuaternion(Rotation.Quaternion);
-        transform.rotation = Rotation.Quaternion;
-        Player.SetQuaternion(Rotation.Quaternion);
         
         // {
         //     TowerContext.South => TowerContext.East,
@@ -82,12 +83,10 @@ public class GameManager : MonoBehaviour
     }
     public void TurnLeft()
     {
-        Debug.Log("TurnLeft");
+        // Debug.Log("TurnLeft");
         if ((int)--TowerSide < 0) TowerSide = TowerContext.West;
         Rotation = Rotation.Add(90);
-        // CameraController.SetQuaternion(Rotation.Quaternion);
-        transform.rotation = Rotation.Quaternion;
-        Player.SetQuaternion(Rotation.Quaternion);
+        DoRotate();
 
         // TowerSide = TowerSide switch
         // {
@@ -97,6 +96,18 @@ public class GameManager : MonoBehaviour
         //     TowerContext.East => TowerContext.South,
         //     _ => throw new ArgumentOutOfRangeException()
         // };
+    }
+
+    private void DoRotate()
+    {
+        transform.rotation = Rotation.Quaternion;
+        CameraController.SetQuaternion(Rotation.Quaternion);
+        Player.ResetVel();
+        Transform pT = Player.transform;
+        pT.rotation = Rotation.Quaternion;
+        Vector3 pos = pT.position;
+        pos.z = -3;
+        pT.position = ConvertVector(pos);
     }
     
 }

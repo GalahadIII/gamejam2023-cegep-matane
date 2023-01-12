@@ -37,7 +37,7 @@ public class MovementController : MonoBehaviour
         _frameInput = InputManager.PlayerInputs;
         
         IsGrounded();
-        Debug.Log(_grounded);
+        // Debug.Log(_grounded);
         if (_frameInput.Jump.OnDown)
         {
             _jumpToConsume = true;
@@ -81,16 +81,19 @@ public class MovementController : MonoBehaviour
         // calculate wanted direction and desired velocity
         float targetSpeed = (_frameInput.Movement2d.Live.x == 0 ? 0 : MathF.Sign(_frameInput.Movement2d.Live.x))  * _stats.MoveSpeed;
         // calculate difference between current volocity and target velocity
-        float speedDif = targetSpeed - GameManager.Inst.ConvertVector(_rb.velocity).x;
+        float speedDif = targetSpeed - GameManager.Inst.ConvertVector(_rb.velocity).x * 0.9f;
+        // speedDif = Mathf.Abs(speedDif) < 0.1f || Mathf.Abs(speedDif) > 11f ? 0 : speedDif; 
+        // Debug.Log($"{speedDif}");
         // change acceleration rate depending on situations;
         float accelRate = Mathf.Abs(targetSpeed) > 0.01f ? _stats.Acceleration : _stats.Decceleration;
         // applies acceleration to speed difference, raise to a set power so acceleration increase with higher speed
         // multiply by sign to reapply direction
         float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, _stats.VelPower) * Mathf.Sign(speedDif);
-
+        
         // apply the movement force
-        Debug.Log($"{GameManager.Inst.ConvertVector(_rb.velocity)} {_rb.velocity}");
-        Debug.Log($"{movement * GameManager.Inst.ConvertVector(Vector2.right)}");
+        // Debug.Log($"{targetSpeed} {speedDif} {accelRate} {movement} {GameManager.Inst.ConvertVector(_rb.velocity).x}");
+        // Debug.Log($"{GameManager.Inst.ConvertVector(_rb.velocity)} {_rb.velocity}");
+        // Debug.Log($"{movement * GameManager.Inst.ConvertVector(Vector2.right)}");
         _rb.AddForce(movement * GameManager.Inst.ConvertVector(Vector2.right));
     }
     #endregion
@@ -123,8 +126,8 @@ public class MovementController : MonoBehaviour
     {
         _coyoteUsable = false;
         _bufferedJumpUsable = false;
-        _rb.velocity = new Vector2(_rb.velocity.x, 0);
-        _rb.AddForce(Vector2.up * _stats.JumpForce, ForceMode.Impulse);
+        _rb.velocity = new Vector3(_rb.velocity.x, 0, _rb.velocity.y);
+        _rb.AddForce(Vector3.up * _stats.JumpForce, ForceMode.Impulse);
      }
 
      private void ResetJump()
@@ -139,4 +142,9 @@ public class MovementController : MonoBehaviour
         _rb.AddForce(Vector3.down * _stats.FallGravityForce, ForceMode.Force);
     }
     #endregion
+
+    public void ResetVelocity()
+    {
+        _rb.velocity = Vector3.zero;
+    }
 }
