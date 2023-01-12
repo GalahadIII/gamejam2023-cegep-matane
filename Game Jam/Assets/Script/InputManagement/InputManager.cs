@@ -5,16 +5,14 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager Inst { get; private set; }
 
-    // [SerializeField] private int FixedUpdateCount = 0;
-
     [SerializeField] private int DelayConsecutive = 25;
 
     protected PlayerInputs _playerInputs = new();
     public static PlayerInputs PlayerInputs => Inst._playerInputs;
 
     private InputActions _playerActions;
-    private InputAction _move, _moveUp, _moveDown, 
-        _cursorPosition, _cursorPositionDelta, _scroll, 
+    private InputAction _move, _moveUp, _moveDown,
+        _cursorPosition, _cursorPositionDelta, _scroll,
         _action1, _interaction, _inventory;
 
     private void OnEnable()
@@ -25,14 +23,11 @@ public class InputManager : MonoBehaviour
     }
     private void Update()
     {        
-        // Debug.Log($"{_playerInputs.Interact.Live} {_playerInputs.Interact.Last}");
-        // if (_playerInputs.Interact.OnUp) Debug.Log($"Unfixed OnUp");
         UpdateData();
     }
     private void FixedUpdate()
     {
         UpdateTimer();
-        // Debug.Log($"{_playerInputs.CursorPosition} {PlayerInputs.CursorPosition}");
     }
 
     private void SetupAction()
