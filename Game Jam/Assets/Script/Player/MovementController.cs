@@ -80,14 +80,12 @@ public class MovementController : MonoBehaviour
         // calculate wanted direction and desired velocity
         float targetSpeed = (_frameInput.Movement2d.Live.x == 0 ? 0 : MathF.Sign(_frameInput.Movement2d.Live.x))  * _stats.MoveSpeed;
         // calculate difference between current volocity and target velocity
-        //float speedDif = targetSpeed - GameManager.Inst.ConvertVector(_rb.velocity).x * 0.9f;
-        
-        
-        float speedDif = targetSpeed - _rb.velocity.z * 0.9f;
-        //float speedDif = targetSpeed - _rb.velocity.x * 0.9f;
-        
-        // speedDif = Mathf.Abs(speedDif) < 0.1f || Mathf.Abs(speedDif) > 11f ? 0 : speedDif; 
-        // Debug.Log($"{speedDif}");
+        float vel = 0;
+        if (GameManager.Inst.TowerSide == TowerContext.South) vel = _rb.velocity.x;
+        if (GameManager.Inst.TowerSide == TowerContext.East) vel = _rb.velocity.z;
+        if (GameManager.Inst.TowerSide == TowerContext.North) vel = -_rb.velocity.x;
+        if (GameManager.Inst.TowerSide == TowerContext.West) vel = -_rb.velocity.z;
+        float speedDif = targetSpeed - vel;
         // change acceleration rate depending on situations;
         float accelRate = Mathf.Abs(targetSpeed) > 0.01f ? _stats.Acceleration : _stats.Decceleration;
         // applies acceleration to speed difference, raise to a set power so acceleration increase with higher speed
@@ -95,16 +93,11 @@ public class MovementController : MonoBehaviour
         float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, _stats.VelPower) * Mathf.Sign(speedDif);
         
         // apply the movement force
-        // Debug.Log($"{targetSpeed} {speedDif} {accelRate} {movement} {GameManager.Inst.ConvertVector(_rb.velocity).x}");
-        // Debug.Log($"{GameManager.Inst.ConvertVector(_rb.velocity)} {_rb.velocity}");
-        // Debug.Log($"{movement * GameManager.Inst.ConvertVector(Vector2.right)}");
-        //_rb.AddForce(movement * GameManager.Inst.ConvertVector(Vector2.right));
-        
-        
-        //_rb.AddForce(movement * Vector3.right);
-        _rb.AddForce(movement * Vector3.forward);
+        _rb.AddForce(movement * GameManager.Inst.ConvertVector(Vector3.right));
     }
     #endregion
+    
+    // private void HorizontalTransform
     
     #region Jump
 
