@@ -15,6 +15,10 @@ public class PlayerManager : MonoBehaviour
     public GameObject modeleVivant;
     public GameObject deadBody;
 
+    public GameObject outlineVivant;
+
+
+
     float distanceChute;
 
     public static bool isDead;
@@ -54,14 +58,18 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("Dead");
         modeleVivant.SetActive(false);
         deadBody.SetActive(true);
+        outlineVivant.SetActive(false);
+        moveController.DisabledControls = true;
         isDead = true;
     }
-    
+
     [ContextMenu("Respawn")]
     private void Respawn()
     {
         modeleVivant.SetActive(true);
         deadBody.SetActive(false);
+        outlineVivant.SetActive(true);
+        moveController.DisabledControls = false;
         isDead = false;
         gameObject.transform.position = CurrentCheckpoint.transform.position;
     }
@@ -74,7 +82,7 @@ public class PlayerManager : MonoBehaviour
     {
         moveController.FreezePosition(axis);
     }
-    
+
     private Quaternion _targetQuat = Quaternion.identity;
     private float _rotationSpeed = 1;
     public void SetQuaternion(Quaternion quaternion, float rotationSpeed)
