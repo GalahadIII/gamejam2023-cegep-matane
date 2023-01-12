@@ -71,6 +71,9 @@ public class GameManager : MonoBehaviour
             _ => throw new ArgumentOutOfRangeException()
         };
     }
+
+    [SerializeField] private GameObject Player;
+    
 }
 
 public enum TowerContext {North, South, East, West}
