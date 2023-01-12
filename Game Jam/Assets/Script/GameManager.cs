@@ -10,12 +10,17 @@ public class GameManager : MonoBehaviour
     }
 
     public TowerContext TowerSide { get; private set; } = TowerContext.South;
+
     public Vector3 ConvertVector2(Vector2 inputVector2)
+    {
+        return ConvertVector2(inputVector2, TowerSide);
+    }
+    public static Vector3 ConvertVector2(Vector2 inputVector2, TowerContext towerSide)
     {
         float x = inputVector2.x;
         float y = inputVector2.y;
         
-        return TowerSide switch
+        return towerSide switch
         {
             TowerContext.North => new Vector3(-x, y, 0),
             TowerContext.South => new Vector3(x, y, 0),
@@ -32,6 +37,7 @@ public class GameManager : MonoBehaviour
     }
     private void TurnRight()
     {
+        Debug.Log("TurnRight");
         TowerSide = TowerSide switch
         {
             TowerContext.South => TowerContext.East,
@@ -43,6 +49,7 @@ public class GameManager : MonoBehaviour
     }
     private void TurnLeft()
     {
+        Debug.Log("TurnLeft");
         TowerSide = TowerSide switch
         {
             TowerContext.South => TowerContext.West,

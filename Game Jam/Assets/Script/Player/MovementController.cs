@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MovementController : MonoBehaviour
@@ -10,6 +8,7 @@ public class MovementController : MonoBehaviour
     
     private Rigidbody _rb;
     private PlayerInputs _frameInput;
+    private InteractionModule _interactionModule;
 
     private int _fixedUpdateCounter;
     private bool _hasControl;
@@ -27,16 +26,12 @@ public class MovementController : MonoBehaviour
     
     #endregion
     
-    private void Awake()
+    private void OnEnable()
     {
         _rb = GetComponent<Rigidbody>();
+        _interactionModule = GetComponentInChildren<InteractionModule>();
     }
 
-    private void Start()
-    {
-        
-    }
-    
     private void Update()
     {
         _frameInput = InputManager.PlayerInputs;
@@ -47,6 +42,11 @@ public class MovementController : MonoBehaviour
         {
             _jumpToConsume = true;
             _frameJumpWasPressed = _fixedUpdateCounter;
+        }
+
+        if (_frameInput.Interact.OnDown)
+        {
+            _interactionModule.TriggerInteraction();
         }
     }
     
