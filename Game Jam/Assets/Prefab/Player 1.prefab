@@ -211,7 +211,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5896227626209253409}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 4e2721e26cc00df6fb11a7d6b65a17f7, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -458,25 +458,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7801207084723391858, guid: 72cba0ce3d4735f4b824393794419620, type: 3}
   m_PrefabInstance: {fileID: 3553769577888010649}
   m_PrefabAsset: {fileID: 0}
---- !u!1818360608 &7059103387070450165
-PositionConstraint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6706688983887781099}
-  m_Enabled: 1
-  m_Weight: 1
-  m_TranslationAtRest: {x: 0, y: 0, z: 0}
-  m_TranslationOffset: {x: 0, y: 0, z: 0}
-  m_AffectTranslationX: 1
-  m_AffectTranslationY: 1
-  m_AffectTranslationZ: 1
-  m_IsContraintActive: 1
-  m_IsLocked: 1
-  m_Sources:
-  - sourceTransform: {fileID: 5896227626209253416}
-    weight: 1
 --- !u!1818360610 &7059103387070450162
 ScaleConstraint:
   m_ObjectHideFlags: 0
@@ -514,6 +495,25 @@ RotationConstraint:
   m_IsLocked: 1
   m_Sources:
   - sourceTransform: {fileID: 5896227625820517661}
+    weight: 1
+--- !u!1818360608 &7059103387070450165
+PositionConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6706688983887781099}
+  m_Enabled: 1
+  m_Weight: 1
+  m_TranslationAtRest: {x: 0, y: 0, z: 0}
+  m_TranslationOffset: {x: 0, y: 0, z: 0}
+  m_AffectTranslationX: 1
+  m_AffectTranslationY: 1
+  m_AffectTranslationZ: 1
+  m_IsContraintActive: 1
+  m_IsLocked: 1
+  m_Sources:
+  - sourceTransform: {fileID: 5896227626209253416}
     weight: 1
 --- !u!1001 &6474457497049389003
 PrefabInstance:

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -39,6 +40,7 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
+<<<<<<< HEAD
         if (GameManager.Inst.ConvertVector(moveController.Speed).x > 0)
         {
 
@@ -48,6 +50,10 @@ public class PlayerManager : MonoBehaviour
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
+=======
+        
+        GameManager.Inst.CameraController.SetPosY(Math.Max(transform.position.y, GameManager.Inst.CameraController.CameraMinHeight));
+>>>>>>> 1b85d5495c421da5a3b8c56790d4b999c3776784
 
         if (moveController.Speed.magnitude > 0.1f)
         {
