@@ -16,11 +16,13 @@ public class PlayerManager : MonoBehaviour
     float distanceChute;
 
     public static bool isDead;
-    MovementController moveController;
+    public MovementController moveController;
+    public InteractionModule interactionModule;
 
     void Start()
     {
         moveController = gameObject.GetComponent<MovementController>();
+        interactionModule = GetComponentInChildren<InteractionModule>();
     }
     // Update is called once per frame
     void Update()

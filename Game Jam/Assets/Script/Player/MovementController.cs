@@ -29,7 +29,6 @@ public class MovementController : MonoBehaviour
     private void OnEnable()
     {
         _rb = GetComponent<Rigidbody>();
-        _interactionModule = GetComponentInChildren<InteractionModule>();
     }
 
     private void Update()
