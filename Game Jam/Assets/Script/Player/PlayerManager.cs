@@ -41,17 +41,17 @@ public class PlayerManager : MonoBehaviour
     private void Update()
     {
         Transform t = transform;
-        
+
         float velX = GameManager.Inst.ConvertVector(moveController.Speed).x;
         // Vector3 vel = moveController.Speed;
-        Vector3 newScale = new (Mathf.Sign(velX), 1, 1);
+        Vector3 newScale = new(Mathf.Sign(velX), 1, 1);
         t.localScale = newScale;
         // t.localScale = GameManager.Inst.ConvertVector(newScale, true);
         // Debug.Log($"{velX} {newScale} {t.localScale}");
-        
+
         GameManager.Inst.CameraController.SetPosY(Math.Max(t.position.y, GameManager.Inst.CameraController.CameraMinHeight));
 
-        if (moveController.Speed.magnitude > 0.1f)
+        if (moveController.Speed.magnitude > 0.1f && !moveController.Falling && !moveController.Jumping)
         {
 
             animator.SetBool("isWalking", true);
