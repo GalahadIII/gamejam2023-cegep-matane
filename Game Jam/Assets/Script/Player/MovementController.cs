@@ -43,7 +43,6 @@ public class MovementController : MonoBehaviour
             _jumpToConsume = true;
             _frameJumpWasPressed = GameManager.Inst.FixedUpdateCount;
         }
-
     }
     
     private void FixedUpdate()

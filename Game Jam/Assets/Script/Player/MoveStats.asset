@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed26d36d53515729bcf6b13a2fff323, type: 3}
   m_Name: MoveStats
   m_EditorClassIdentifier: 
-  MoveSpeed: 10
+  MoveSpeed: 6
   Acceleration: 3
   Decceleration: 5
   VelPower: 1.2
   Friction: 0.7
-  JumpForce: 6
+  JumpForce: 5
   JumpCutMultiplier: 0
   JumpCoyoteFrame: 10
   JumpBufferFrame: 10
-  FallGravityForce: 15
+  FallGravityForce: 20
