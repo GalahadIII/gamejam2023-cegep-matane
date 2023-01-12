@@ -1,8 +1,6 @@
 using System;
 using UnityEngine;
 
-
-[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class PlayerController : MonoBehaviour, IPlayerController
 {
     [SerializeField] private PlayerMoveStats _stats;
@@ -11,8 +9,8 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
     [SerializeField] private LayerMask _groundLayerMask; 
     
-    private Rigidbody2D _rb;
-    private PlayerInputs _frameInput;
+    private Rigidbody _rb;
+    private PlayerInputs _input;
 
     private int _fixedUpdateCounter;
     private bool _hasControl;
@@ -25,9 +23,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
     #endregion
 
     #region Public
-
-    //public Vector2 Input => _frameInput.Move;
-    public Vector2 Speed => _rb.velocity;
+    
     public bool Falling => _rb.velocity.y < 0;
     public bool Jumping => _rb.velocity.y > 0;
     public bool FacingRight => _facingRight;
@@ -37,25 +33,24 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody>();
     }
 
     private void Start()
     {
-        _gravityScale = _rb.gravityScale;
     }
 
     private void Update()
     {
-        IsGrounded();
+        //IsGrounded();
                     
-        _frameInput = InputManager.PlayerInputs;
-        if (_frameInput.JumpDown)
+        _input = InputManager.PlayerInputs;
+        if (_input.Jump.OnDown)
         {
             _jumpToConsume = true;
             _frameJumpWasPressed = _fixedUpdateCounter;
         }
-        if (_frameInput.JumpUp) JumpCut();
+        if (_input.Jump.OnUp) JumpCut();
     }
     
     private void FixedUpdate()
@@ -72,7 +67,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
         GravityModifier();
     }
 
-    #region Checks
+    /*#region Checks
 
     private void IsGrounded()
     {
@@ -94,14 +89,14 @@ public class PlayerController : MonoBehaviour, IPlayerController
         _grounded = raycastHit;
     }
 
-    #endregion
+    #endregion*/
 
     #region Horizontal
 
     private void Horizontal()
     {
         // calculate wanted direction and desired velocity
-        float targetSpeed = (_frameInput.Movement2d.Live.x == 0 ? 0 : MathF.Sign(_frameInput.Movement2d.Live.x))  * _stats.MoveSpeed;
+        float targetSpeed = (_input.Movement2d.Live.x == 0 ? 0 : MathF.Sign(_input.Movement2d.Live.x))  * _stats.MoveSpeed;
         // calculate difference between current volocity and target velocity
         float speedDif = targetSpeed - _rb.velocity.x;
         // change acceleration rate depending on situations;
@@ -111,20 +106,20 @@ public class PlayerController : MonoBehaviour, IPlayerController
         float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, _stats.VelPower) * Mathf.Sign(speedDif);
 
         // apply the movement forcea 
-        _rb.AddForce(movement * Vector2.right);
+        _rb.AddForce(movement * Vector3.right);
     }
 
     private void ArtificialFriction()
     {
         if (!_grounded) return;
-        if (!(Mathf.Abs(_frameInput.Movement2d.Live.x) < 0.01f)) return;
+        if (!(Mathf.Abs(_input.Movement2d.Live.x) < 0.01f)) return;
         
         // use either friction amount or velocity
         float amount = Mathf.Min(Mathf.Abs(_rb.velocity.x), Mathf.Abs(_stats.Friction));
         // sets to movement direction
         amount *= Mathf.Sign(_rb.velocity.x);
         // applies force against movement direction
-        _rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
+        _rb.AddForce(Vector3.right * -amount, ForceMode.Impulse);
 
     }
 
@@ -158,8 +153,8 @@ public class PlayerController : MonoBehaviour, IPlayerController
     {
         _coyoteUsable = false;
         _bufferedJumpUsable = false;
-        _rb.velocity = new Vector2(_rb.velocity.x, 0);
-        _rb.AddForce(Vector2.up * _stats.JumpForce, ForceMode2D.Impulse);
+        _rb.velocity = new Vector3(_rb.velocity.x, 0);
+        _rb.AddForce(Vector3.up * _stats.JumpForce, ForceMode.Impulse);
     }
 
     private void ResetJump()
@@ -172,22 +167,22 @@ public class PlayerController : MonoBehaviour, IPlayerController
     {
         if (!Falling)
         {
-            _rb.AddForce(Vector2.down * (_rb.velocity.y * (1 - _stats.JumpCutMultiplier)), ForceMode2D.Impulse);
+            _rb.AddForce(Vector3.down * (_rb.velocity.y * (1 - _stats.JumpCutMultiplier)), ForceMode.Impulse);
         }
     }
 
     private void GravityModifier()
     {
-        _rb.gravityScale = Falling ? _stats.FallGravityMultiplier : _gravityScale;
+        //_rb.gravityScale = Falling ? _stats.FallGravityMultiplier : _gravityScale;
     }
 
     #endregion
 
     private void Flip()
     {
-        if (Mathf.Abs(_frameInput.Movement2d.Live.x) < 0.1f) return;
-        if (_facingRight && Mathf.Sign(_frameInput.Movement2d.Live.x) < 0) return;
-        if (!_facingRight && Mathf.Sign(_frameInput.Movement2d.Live.x) > 0) return;
+        if (Mathf.Abs(_input.Movement2d.Live.x) < 0.1f) return;
+        if (_facingRight && Mathf.Sign(_input.Movement2d.Live.x) < 0) return;
+        if (!_facingRight && Mathf.Sign(_input.Movement2d.Live.x) > 0) return;
         //Utilities.FlipTransform(transform);
         _facingRight = !_facingRight;
     }
@@ -195,7 +190,6 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
 public interface IPlayerController
 {
-    public Vector2 Speed { get; }
     public bool Falling { get; }
     public bool Jumping { get; }
     public bool FacingRight { get; }
