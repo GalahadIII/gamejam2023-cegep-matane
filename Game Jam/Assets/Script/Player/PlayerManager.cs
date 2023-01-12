@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
 {
     Vector3 positionChute;
 
+    [SerializeField] private Animator animator;
     bool fallingLastFrame;
     public float distanceMort = 10f;
     public Checkpoint CurrentCheckpoint;
@@ -32,6 +33,15 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
+
+        if (moveController.Speed.magnitude > 0.1f)
+        {
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+        }
         Rotate();
         if (moveController.Falling && !fallingLastFrame)
         {
