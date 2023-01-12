@@ -55,4 +55,9 @@ public class PlayerManager : MonoBehaviour
     {
         moveController.ResetVelocity();
     }
+
+    public void FreezePosition(FreezePositionAxis axis)
+    {
+        moveController.FreezePosition(axis);
+    }
 }

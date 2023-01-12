@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     public Direction2D Rotation = new Direction2D(0).ChangeQuaternionAxis(Vector3.up);
     public TowerContext TowerSide { get; private set; } = TowerContext.South;
+    public float PlayerTowerDistance = 3;
 
     public void Update()
     {
@@ -28,15 +29,15 @@ public class GameManager : MonoBehaviour
     {
         FixedUpdateCount++;
         
-        // 
+        //
 
-        Transform pT = Player.transform;
-        Vector3 pos = pT.position;
-        if (TowerSide == TowerContext.South) pos.z = -3;
-        if (TowerSide == TowerContext.North) pos.z = 3;
-        if (TowerSide == TowerContext.East) pos.x = 3;
-        if (TowerSide == TowerContext.West) pos.x = -3;
-        pT.position = pos;
+        // Transform pT = Player.transform;
+        // Vector3 pos = pT.position;
+        // if (TowerSide == TowerContext.South) pos.z = -PlayerTowerDistance;
+        // if (TowerSide == TowerContext.North) pos.z = PlayerTowerDistance;
+        // if (TowerSide == TowerContext.East) pos.x = PlayerTowerDistance;
+        // if (TowerSide == TowerContext.West) pos.x = -PlayerTowerDistance;
+        // pT.position = pos;
     }
 
     public Vector3 ConvertVector(Vector3 inputVector)
@@ -104,11 +105,39 @@ public class GameManager : MonoBehaviour
     private void DoRotate()
     {
         transform.rotation = Rotation.Quaternion;
+        
         CameraController.SetQuaternion(Rotation.Quaternion);
+        
         Player.ResetVel();
+        Player.FreezePosition(TowerContextToFreezePosition(TowerSide));
+        
         Transform pT = Player.transform;
         pT.rotation = Rotation.Quaternion;
+        
+        Vector3 pos = pT.position;
+        if (TowerSide == TowerContext.South) pos.z = -PlayerTowerDistance;
+        else if (TowerSide == TowerContext.North) pos.z = PlayerTowerDistance;
+        else if (TowerSide == TowerContext.East) pos.x = PlayerTowerDistance;
+        else if (TowerSide == TowerContext.West) pos.x = -PlayerTowerDistance;
+        pT.position = pos;
     }
+
+    private static FreezePositionAxis TowerContextToFreezePosition(TowerContext towerContext)
+    {
+        // if (towerContext == TowerContext.East || towerContext == TowerContext.West)
+            // FreezePositionAxis
+        
+        return towerContext switch
+        {
+            TowerContext.South => FreezePositionAxis.Z,
+            TowerContext.West => FreezePositionAxis.X,
+            TowerContext.North => FreezePositionAxis.Z,
+            TowerContext.East => FreezePositionAxis.X,
+            _ => throw new ArgumentOutOfRangeException()
+        };
+    }
+    
+    
     
 }
 
