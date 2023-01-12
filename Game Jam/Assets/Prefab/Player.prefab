@@ -136,6 +136,7 @@ MonoBehaviour:
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  distanceAvecLeSol: 1.01
   DisabledControls: 0
 --- !u!114 &2073486952115022750
 MonoBehaviour:
@@ -150,8 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceMort: 10
-  moveController: {fileID: 0}
-  interactionModule: {fileID: 0}
+  moveController: {fileID: 5551423692417616162}
+  interactionModule: {fileID: 4865495381316163262}
 --- !u!1001 &2089049705346571067
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -275,6 +276,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c5c696b0f79d0ecd8f9de9066ba46e9, type: 3}
+--- !u!114 &4865495381316163262 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8755303016563902188, guid: 9c5c696b0f79d0ecd8f9de9066ba46e9, type: 3}
+  m_PrefabInstance: {fileID: 4180646613491241042}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17684837eaa6dd4eea13f49069b9f6e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7586971676265944535 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6003005262705575301, guid: 9c5c696b0f79d0ecd8f9de9066ba46e9, type: 3}
