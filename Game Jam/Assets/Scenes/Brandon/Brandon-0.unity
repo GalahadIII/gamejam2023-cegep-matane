@@ -786,10 +786,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4289335805803556749, guid: a91cc2cce2b01b587a25dba653fb85dc, type: 3}
-      propertyPath: _planeSwitchDirection
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5530431223428851920, guid: a91cc2cce2b01b587a25dba653fb85dc, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -836,7 +832,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5530431223428851921, guid: a91cc2cce2b01b587a25dba653fb85dc, type: 3}
       propertyPath: m_Name
-      value: PlaneSwitchers
+      value: PlaneSwitcherFollow
       objectReference: {fileID: 0}
     - target: {fileID: 5888407659451382814, guid: a91cc2cce2b01b587a25dba653fb85dc, type: 3}
       propertyPath: _playerFollowY

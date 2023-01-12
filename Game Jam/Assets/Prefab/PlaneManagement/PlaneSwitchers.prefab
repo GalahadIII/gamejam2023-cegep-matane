@@ -177,6 +177,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlaneSwitcherLeft
       objectReference: {fileID: 0}
+    - target: {fileID: 8594770063185452902, guid: 0c338a15964ef41d7a06667d82684ffa, type: 3}
+      propertyPath: _planeSwitchDirection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c338a15964ef41d7a06667d82684ffa, type: 3}
 --- !u!1 &4561632732537427408 stripped
