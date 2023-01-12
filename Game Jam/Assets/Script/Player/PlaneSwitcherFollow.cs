@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 public enum PlaneSwitchDirection{Left, Right}
@@ -11,7 +12,6 @@ public class PlaneSwitcherFollow : MonoBehaviour
     
     [SerializeField] private GameObject _playerFollowY = null;
     
-    [SerializeField] private float _towerSize = 5;
     [SerializeField] private float _offsetOutwards = 0.7f;
 
     private int _cooldown = 0;
@@ -19,7 +19,7 @@ public class PlaneSwitcherFollow : MonoBehaviour
 
     private void OnEnable()
     {
-        float offset = _towerSize / 2 + _offsetOutwards;
+        float offset = GameManager.Inst.TowerSize / 2 + _offsetOutwards;
 
         _switcherLeft.transform.localPosition = GameManager.Inst.ConvertVector(new Vector3(-offset, 0, -offset));
         _switcherRight.transform.localPosition = GameManager.Inst.ConvertVector(new Vector3(offset, 0, -offset));
@@ -50,18 +50,23 @@ public class PlaneSwitcherFollow : MonoBehaviour
         
         foreach (GameObject o in _switcherLeft.Objects.Where(o => o.CompareTag("Player")))
         {
-            _cooldown = 0;
+            PlayerDetected(o,_switcherLeft);
             GameManager.Inst.TurnLeft();
-            _triggered = true;
             return;
         }
         foreach (GameObject o in _switcherRight.Objects.Where(o => o.CompareTag("Player")))
         {
-            _cooldown = 0;
+            PlayerDetected(o,_switcherRight);
             GameManager.Inst.TurnRight();
-            _triggered = true;
             return;
         }
 
+    }
+
+    private void PlayerDetected(GameObject player, Component detector)
+    {
+        player.transform.position = detector.transform.position;
+        _cooldown = 0;
+        _triggered = true;
     }
 }

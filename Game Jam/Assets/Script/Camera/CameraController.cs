@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
     // [SerializeField] private TowerContext facingDirection;
     // [SerializeField] private float degree;
     private Quaternion targetQuat = Quaternion.identity;
-    [SerializeField] private float rotationSpeed;
+    [SerializeField] public float rotationSpeed;
     [SerializeField] private float magnitude;
 
     [SerializeField] private float duration;
@@ -28,21 +28,24 @@ public class CameraController : MonoBehaviour
         }
         // if (Input.GetKeyDown(KeyCode.RightArrow))
         // {
-        // if ((int)++TowerSide > 3) TowerSide = TowerContext.South;
-        // degree -= 90f;
+        // if ((int)++GameManager.Inst.TowerSide > 3) GameManager.Inst.TowerSide = TowerContext.South;
+        //     degree -= 90f;
         // }
         // else if (Input.GetKeyDown(KeyCode.LeftArrow))
         // {
-        // if ((int)--TowerSide < 0) TowerSide = TowerContext.West;
-        // degree += 90f;
+        // if ((int)--GameManager.Inst.TowerSide < 0) GameManager.Inst.TowerSide = TowerContext.West;
+        //     degree += 90f;
         // }
-        // Rotate();
+        Rotate();
     }
 
-    // public void SetPos(Vector3 pos)
-    // {
-    //     transform.position += pos;
-    // }
+    public void SetPosY(float yPos)
+    {
+        Transform t = transform;
+        Vector3 pos = t.position;
+        pos.y = yPos;
+        t.position = pos;
+    }
     public void SetQuaternion(Quaternion quaternion)
     {
         targetQuat = quaternion;
