@@ -129,7 +129,7 @@ public class MovementController : MonoBehaviour
     {
         _coyoteUsable = false;
         _bufferedJumpUsable = false;
-        _rb.velocity = new Vector3(_rb.velocity.x, 0, _rb.velocity.y);
+        _rb.velocity = new Vector3(_rb.velocity.x, 0, _rb.velocity.z);
         _rb.AddForce(Vector3.up * _stats.JumpForce, ForceMode.Impulse);
     }
 
@@ -146,8 +146,20 @@ public class MovementController : MonoBehaviour
     }
     #endregion
 
+    public void FreezePosition(FreezePositionAxis axis)
+    {
+        _rb.constraints = axis switch
+        {
+            FreezePositionAxis.X => RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX,
+            FreezePositionAxis.Z => RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ,
+            _ => _rb.constraints
+        };
+    }
+
     public void ResetVelocity()
     {
         _rb.velocity = Vector3.zero;
     }
 }
+
+public enum FreezePositionAxis { X,Z }
