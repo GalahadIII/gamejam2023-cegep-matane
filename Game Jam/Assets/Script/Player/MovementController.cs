@@ -78,7 +78,7 @@ public class MovementController : MonoBehaviour
         // multiply by sign to reapply direction
         float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, _stats.VelPower) * Mathf.Sign(speedDif);
 
-        // apply the movement forcea 
+        // apply the movement force
         _rb.AddForce(movement * Vector2.right);
     }
     #endregion
