@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    
     Vector3 positionChute;
 
     bool fallingLastFrame;
@@ -22,13 +21,12 @@ public class PlayerManager : MonoBehaviour
     public MovementController moveController;
     public InteractionModule interactionModule;
 
-    void OnEnable()
+    private void OnEnable()
     {
         moveController = GetComponent<MovementController>();
         interactionModule = GetComponentInChildren<InteractionModule>();
     }
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         Rotate();
         if (moveController.Falling && !fallingLastFrame)
@@ -46,12 +44,12 @@ public class PlayerManager : MonoBehaviour
         }
 
     }
-    void LateUpdate()
+    private void LateUpdate()
     {
         fallingLastFrame = moveController.Falling;
         isDead = false;
     }
-    void Die()
+    private void Die()
     {
         Debug.Log("Dead");
         modeleVivant.SetActive(false);
@@ -63,7 +61,6 @@ public class PlayerManager : MonoBehaviour
     {
         moveController.ResetVelocity();
     }
-
     public void FreezePosition(FreezePositionAxis axis)
     {
         moveController.FreezePosition(axis);

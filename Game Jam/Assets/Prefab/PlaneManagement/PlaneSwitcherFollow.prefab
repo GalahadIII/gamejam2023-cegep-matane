@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 5530431223428851920}
   - component: {fileID: 5888407659451382814}
   m_Layer: 0
-  m_Name: PlaneSwitchers
+  m_Name: PlaneSwitcherFollow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

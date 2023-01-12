@@ -49,7 +49,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   CameraController: {fileID: 0}
   TowerSize: 5
-  PlayerTowerDistance: 3
+  PlayerTowerDistance: 3.5
 --- !u!114 &7271831215629369415
 MonoBehaviour:
   m_ObjectHideFlags: 0
