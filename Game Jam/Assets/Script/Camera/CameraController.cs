@@ -6,24 +6,24 @@ public class CameraController : MonoBehaviour
 {
     public CameraShake cameraShake;
 
-    [SerializeField] private FacingDirection facingDirection;
+    [SerializeField] private TowerContext facingDirection;
     [SerializeField] private float degree;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float magnitude;
 
     [SerializeField] private float duration;
 
-    private FacingDirection lastFacing;
+    private TowerContext lastFacing;
     // Start is called before the first frame update
     void Start()
     {
-        facingDirection = FacingDirection.South;
+        facingDirection = TowerContext.South;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (PlayerManager.isDead)
         {
             StartCoroutine(cameraShake.Shake(duration, magnitude));
         }
@@ -46,7 +46,7 @@ public class CameraController : MonoBehaviour
             facingDirection -= 1;
             if ((int)(facingDirection) < 0)
             {
-                facingDirection = (FacingDirection)3;
+                facingDirection = TowerContext.West;
             }
         }
         Rotate();
@@ -56,11 +56,11 @@ public class CameraController : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, degree, 0), rotationSpeed * Time.deltaTime);
     }
 
-    private enum FacingDirection
-    {
-        South = 0,
-        East = 1,
-        North = 2,
-        West = 3
-    }
+    // private enum FacingDirection
+    // {
+    //     South = 0,
+    //     East = 1,
+    //     North = 2,
+    //     West = 3
+    // }
 }

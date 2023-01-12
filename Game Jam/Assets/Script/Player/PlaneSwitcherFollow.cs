@@ -8,7 +8,7 @@ public class PlaneSwitcherFollow : MonoBehaviour
     
     [SerializeField] private GameObject _playerFollowY = null;
     [SerializeField] private float _towerSize = 5;
-    [SerializeField] private float _offsetOutwards = 1.2f;
+    [SerializeField] private float _offsetOutwards = 0.7f;
 
     private void OnEnable()
     {
