@@ -20,12 +20,6 @@ public class GameManager : MonoBehaviour
     public TowerContext TowerSide { get; private set; } = TowerContext.South;
     public float PlayerTowerDistance { get; private set; } = 3.5f;
 
-    public void Update()
-    {
-        // Debug.Log($"{Rotation.Quaternion.eulerAngles} {Rotation.Axis}");
-        // Debug.Log($"{Rotation.Add(90).Quaternion.eulerAngles} {Rotation.Add(90).Axis}");
-    }
-
     public void FixedUpdate()
     {
         FixedUpdateCount++;
