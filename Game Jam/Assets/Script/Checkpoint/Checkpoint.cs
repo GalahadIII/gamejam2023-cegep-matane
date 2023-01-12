@@ -15,7 +15,7 @@ public class Checkpoint : MonoBehaviour
     {
     }
 
-    private void OnTriggerEnter(Component col)
+    private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
