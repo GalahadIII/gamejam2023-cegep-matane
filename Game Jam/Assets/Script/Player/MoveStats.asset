@@ -17,7 +17,7 @@ MonoBehaviour:
   Decceleration: 5
   VelPower: 1.2
   Friction: 0.7
-  JumpForce: 6
+  JumpForce: 9.39
   JumpCutMultiplier: 0
   JumpCoyoteFrame: 10
   JumpBufferFrame: 10

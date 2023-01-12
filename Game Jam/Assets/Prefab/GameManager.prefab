@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6748633205380377068}
   - component: {fileID: 2640059400672118831}
   - component: {fileID: 7271831215629369415}
+  - component: {fileID: 5696552221257721702}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -45,6 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fc4267691c048fcb65684e7af6bf1a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  CameraController: {fileID: 0}
+  TowerSize: 5
+  PlayerTowerDistance: 3
 --- !u!114 &7271831215629369415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,3 +63,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DelayConsecutive: 25
+--- !u!114 &5696552221257721702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3771157750285466704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63c69195207772d7b0ca006c5e49816, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Checkpoints: []
