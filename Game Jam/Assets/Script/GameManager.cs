@@ -50,30 +50,37 @@ public class GameManager : MonoBehaviour
     private void TurnRight()
     {
         Debug.Log("TurnRight");
-        TowerSide = TowerSide switch
-        {
-            TowerContext.South => TowerContext.East,
-            TowerContext.East => TowerContext.North,
-            TowerContext.North => TowerContext.West,
-            TowerContext.West => TowerContext.South,
-            _ => throw new ArgumentOutOfRangeException()
-        };
+        if ((int)++TowerSide > 3) TowerSide = TowerContext.South;
+        CameraController.PivotRight();
+        
+        // {
+        //     TowerContext.South => TowerContext.East,
+        //     TowerContext.East => TowerContext.North,
+        //     TowerContext.North => TowerContext.West,
+        //     TowerContext.West => TowerContext.South,
+        //     _ => throw new ArgumentOutOfRangeException()
+        // };
+        
     }
     private void TurnLeft()
     {
         Debug.Log("TurnLeft");
-        TowerSide = TowerSide switch
-        {
-            TowerContext.South => TowerContext.West,
-            TowerContext.West => TowerContext.North,
-            TowerContext.North => TowerContext.East,
-            TowerContext.East => TowerContext.South,
-            _ => throw new ArgumentOutOfRangeException()
-        };
+        if ((int)--TowerSide < 0) TowerSide = TowerContext.West;
+        CameraController.PivotLeft();
+        
+        // TowerSide = TowerSide switch
+        // {
+        //     TowerContext.South => TowerContext.West,
+        //     TowerContext.West => TowerContext.North,
+        //     TowerContext.North => TowerContext.East,
+        //     TowerContext.East => TowerContext.South,
+        //     _ => throw new ArgumentOutOfRangeException()
+        // };
     }
 
-    [SerializeField] private GameObject Player;
+    [SerializeField] public GameObject Player;
+    [SerializeField] public CameraController CameraController;
     
 }
 
-public enum TowerContext {North, South, East, West}
+public enum TowerContext {South, East, North, West}
