@@ -22,10 +22,10 @@ public class InteractionGUI : MonoBehaviour
 
     public static void Display()
     {
-        Inst.DisplayAt();
+        Inst.DisplayHint();
     }
 
-    protected void DisplayAt()
+    protected void DisplayHint()
     {
         transform.position = (Vector2)Camera.main!.WorldToScreenPoint(Active.WorldPosition);
         gameObject.SetActive(true);
