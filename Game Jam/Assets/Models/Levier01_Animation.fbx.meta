@@ -5,10 +5,13 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: Action
+    second: Take 001
   - first:
-      74: 7499963176143599311
-    second: Reaction
+      74: -7040285308577612800
+    second: Activate
+  - first:
+      74: 336649687839296200
+    second: Reactivate
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -39,7 +42,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Action
+      name: Activate
       takeName: Take 001
       internalID: 0
       firstFrame: 1
@@ -68,11 +71,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 1
     - serializedVersion: 16
-      name: Reaction
+      name: Reactivate
       takeName: Take 001
       internalID: 0
       firstFrame: 10
-      lastFrame: 25
+      lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -99,7 +102,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 100
+    globalScale: 10
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -152,7 +155,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 10
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
