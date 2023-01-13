@@ -5,7 +5,9 @@ using UnityEngine;
 public class TrapController : MonoBehaviour
 {
 
-    public Animator animator;
+
+
+    public Trap trap;
 
 
     // Start is called before the first frame update
@@ -23,7 +25,8 @@ public class TrapController : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            animator.SetTrigger("isTriggered");
+            trap.Trigger();
+            GetComponent<Collider>().enabled = false;
         }
     }
 }

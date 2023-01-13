@@ -2,13 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rateau : ColliderDetector
+public class Rateau : Trap
 {
     // Start is called before the first frame update
     public AudioClip achSound;
 
     public AudioSource audioSource;
     public GameObject achPanel;
+
+    public BoxCollider children;
+    public Animator animator;
+
+    void Start()
+    {
+
+        children.enabled = false;
+
+    }
 
 
     // Update is called once per frame
@@ -26,5 +36,14 @@ public class Rateau : ColliderDetector
             audioSource.PlayOneShot(achSound);
         }
     }
+    public override void Trigger()
+    {
+        children.enabled = true;
+        animator.SetTrigger("isTriggered");
 
+    }
+    public void Disable()
+    {
+        children.enabled = false;
+    }
 }
