@@ -1,4 +1,3 @@
-/*using UnityEditor.UIElements;
 using UnityEngine;
 
 public class InteractOutlineLayer : InteractBase, IInteractable
@@ -34,4 +33,3 @@ public class InteractOutlineLayer : InteractBase, IInteractable
         base.ShowHint();
     }
 }
-*/
