@@ -1,0 +1,282 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5073340894381516441
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3991536653164577166}
+  - component: {fileID: 3505762533129693079}
+  - component: {fileID: 1065845697719000652}
+  m_Layer: 0
+  m_Name: InteractOutline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3991536653164577166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5073340894381516441}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8826897227742834012}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3505762533129693079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5073340894381516441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f973bdea7b44400adecd3b1d07146ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InteractionHintOffset: {x: 0, y: 2, z: 0}
+  InteractHint:
+    m_PersistentCalls:
+      m_Calls: []
+  InteractTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6229132146280371436}
+        m_TargetAssemblyTypeName: Lever, Assembly-CSharp
+        m_MethodName: Toggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2240191479985347063}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: Pivot
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  LayoutSetObject: {fileID: 7651328387359929995}
+  DefaultLayer: 0
+  OutlineLayer: 7
+--- !u!135 &1065845697719000652
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5073340894381516441}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &5409915001649976930
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8826897227742834012}
+  m_Layer: 0
+  m_Name: Levier
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8826897227742834012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5409915001649976930}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 9025643332409676989}
+  - {fileID: 3991536653164577166}
+  m_Father: {fileID: 7651328387359929992}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7651328387359929995
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7651328387359929992}
+  m_Layer: 0
+  m_Name: InteractLeverGround_Door
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7651328387359929992
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7651328387359929995}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7426480949792133130}
+  - {fileID: 8826897227742834012}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &909371041858132773
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7651328387359929992}
+    m_Modifications:
+    - target: {fileID: 1407513889357759186, guid: 611be7461a8d5cebba2475248487c1ca, type: 3}
+      propertyPath: PivotSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6508683589209427131, guid: 611be7461a8d5cebba2475248487c1ca, type: 3}
+      propertyPath: m_Name
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750296073841396527, guid: 611be7461a8d5cebba2475248487c1ca, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750296073841396527, guid: 611be7461a8d5cebba2475248487c1ca, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750296073841396527, guid: 611be7461a8d5cebba2475248487c1ca, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750296073841396527, guid: 611be7461a8d5cebba2475248487c1ca, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750296073841396527, guid: 611be7461a8d5cebba2475248487c1ca, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750296073841396527, guid: 611be7461a8d5cebba2475248487c1ca, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750296073841396527, guid: 611be7461a8d5cebba2475248487c1ca, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750296073841396527, guid: 611be7461a8d5cebba2475248487c1ca, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750296073841396527, guid: 611be7461a8d5cebba2475248487c1ca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750296073841396527, guid: 611be7461a8d5cebba2475248487c1ca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750296073841396527, guid: 611be7461a8d5cebba2475248487c1ca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 611be7461a8d5cebba2475248487c1ca, type: 3}
+--- !u!114 &2240191479985347063 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1407513889357759186, guid: 611be7461a8d5cebba2475248487c1ca, type: 3}
+  m_PrefabInstance: {fileID: 909371041858132773}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce2dec81cd0c8a23a0c93969fe68491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &7426480949792133130 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7750296073841396527, guid: 611be7461a8d5cebba2475248487c1ca, type: 3}
+  m_PrefabInstance: {fileID: 909371041858132773}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5753470516227565838
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8826897227742834012}
+    m_Modifications:
+    - target: {fileID: 3646200708883791283, guid: 4492aa1ca05cacd409c5c5c378018930, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3646200708883791283, guid: 4492aa1ca05cacd409c5c5c378018930, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3646200708883791283, guid: 4492aa1ca05cacd409c5c5c378018930, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3646200708883791283, guid: 4492aa1ca05cacd409c5c5c378018930, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166454819658917641, guid: 4492aa1ca05cacd409c5c5c378018930, type: 3}
+      propertyPath: m_Name
+      value: LevierSol
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4492aa1ca05cacd409c5c5c378018930, type: 3}
+--- !u!114 &6229132146280371436 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1849356965230116322, guid: 4492aa1ca05cacd409c5c5c378018930, type: 3}
+  m_PrefabInstance: {fileID: 5753470516227565838}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac728d383e10f7469b083e951ff6447, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &9025643332409676989 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3646200708883791283, guid: 4492aa1ca05cacd409c5c5c378018930, type: 3}
+  m_PrefabInstance: {fileID: 5753470516227565838}
+  m_PrefabAsset: {fileID: 0}

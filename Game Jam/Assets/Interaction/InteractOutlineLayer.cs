@@ -1,4 +1,3 @@
-/*using UnityEditor.UIElements;
 using UnityEngine;
 
 public class InteractOutlineLayer : InteractBase, IInteractable
@@ -14,7 +13,7 @@ public class InteractOutlineLayer : InteractBase, IInteractable
     {
         _active = _activeTimeLeft-- > 0;
         int targetLayer = _active ? OutlineLayer : DefaultLayer;
-        Debug.Log($"{OutlineLayer} {DefaultLayer}");
+        // Debug.Log($"{OutlineLayer} {DefaultLayer}");
         if (LayoutSetObject.layer != targetLayer)
             SetGameLayerRecursive(LayoutSetObject, targetLayer);
     }
@@ -29,9 +28,7 @@ public class InteractOutlineLayer : InteractBase, IInteractable
 
     public new void ShowHint()
     {
-        Debug.Log($"ShowHint");
         _activeTimeLeft = 5;
         base.ShowHint();
     }
 }
-*/
