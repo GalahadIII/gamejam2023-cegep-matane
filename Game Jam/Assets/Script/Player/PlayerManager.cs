@@ -40,7 +40,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (InputManager.PlayerInputs.Interact.OnDown)
             interactionModule.TriggerInteraction();
-        
+
         Transform t = transform;
 
         float velX = GameManager.Inst.ConvertVector(moveController.Speed).x;
@@ -81,7 +81,7 @@ public class PlayerManager : MonoBehaviour
         fallingLastFrame = moveController.Falling;
         isDead = false;
     }
-    private void Die()
+    public void Die()
     {
         Debug.Log("Dead");
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
@@ -94,7 +94,7 @@ public class PlayerManager : MonoBehaviour
     }
 
     [ContextMenu("Respawn")]
-    private void Respawn()
+    public void Respawn()
     {
         isDead = false;
         gameObject.GetComponent<CapsuleCollider>().enabled = true;
@@ -113,7 +113,7 @@ public class PlayerManager : MonoBehaviour
         foreach (var rb in listRigidbody)
         {
             Vector3 dir = (rb.transform.position - transform.position + Random.insideUnitSphere * 0.3f).normalized;
-            
+
             rb.AddForce(dir * Random.Range(7, 13), ForceMode.Impulse);
         }
     }
