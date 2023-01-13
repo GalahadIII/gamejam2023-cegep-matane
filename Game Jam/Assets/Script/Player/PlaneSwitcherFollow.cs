@@ -45,7 +45,7 @@ public class PlaneSwitcherFollow : MonoBehaviour
             else if (towerContext == TowerContext.West) posLock.x = -offsetWall;
             else if (towerContext == TowerContext.North) posLock.z = offsetWall;
             else if (towerContext == TowerContext.South) posLock.z = -offsetWall;
-            Debug.Log($"{posLock}");
+            // Debug.Log($"{posLock}");
             pT.position = posLock;
             
 
