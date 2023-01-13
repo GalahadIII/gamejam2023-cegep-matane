@@ -19,11 +19,12 @@ public class PlaneSwitcherFollow : MonoBehaviour
     // private int _cooldown = 0;
     private bool _triggered = false;
 
+
     private void OnEnable()
     {
         float offsetOut = GameManager.Inst.TowerSize / 2 + _offsetOutwards;
         float offsetWall = GameManager.Inst.TowerSize / 2 + _offsetWall;
-
+         
         SwitcherLeft.transform.localPosition = new Vector3(-offsetOut, 0, -offsetWall);
         SwitcherRight.transform.localPosition = new Vector3(offsetOut, 0, -offsetWall);
 
@@ -33,16 +34,25 @@ public class PlaneSwitcherFollow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // _cooldown++;
-        
-        if (_playerFollowY != null)
+        Transform t = transform;
         {
-            Vector3 pos = Vector3.zero;
-            pos.y = _playerFollowY.transform.position.y;
-            transform.position = pos;
+            Transform pT = _playerFollowY.transform;
+            float offsetWall = GameManager.Inst.TowerSize / 2 + _offsetWall;
+            Vector3 posLock = pT.position;
+            TowerContext towerContext = GameManager.Inst.TowerSide;
+            
+            if (towerContext == TowerContext.East) posLock.x = offsetWall;
+            else if (towerContext == TowerContext.West) posLock.x = -offsetWall;
+            else if (towerContext == TowerContext.North) posLock.z = offsetWall;
+            else if (towerContext == TowerContext.South) posLock.z = -offsetWall;
+            Debug.Log($"{posLock}");
+            pT.position = posLock;
+            
+
+            t.position = new Vector3(0, pT.position.y, 0);
         }
             
-        transform.rotation = GameManager.Inst.Rotation.Quaternion;
+        t.rotation = GameManager.Inst.Rotation.Quaternion;
             // transform.rotation = new Direction2D(_playerFollowY.transform.rotation).ChangeQuaternionAxis(Vector3.up).Quaternion;
         // if (_cooldown < 50) return;
 

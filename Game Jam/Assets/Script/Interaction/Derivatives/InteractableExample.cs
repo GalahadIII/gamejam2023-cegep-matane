@@ -1,13 +1,14 @@
 using UnityEngine;
 
-public class InteractableExample : MonoBehaviour, IInteractable
+public class InteractableExample : InteractBase, IInteractable
 {
-    public void ShowHint()
+    public new Vector3 WorldPosition => transform.position + InteractionHintOffset;
+    public new void ShowHint()
     {
         Debug.Log($"HINT");
     }
 
-    public void Interact()
+    public new void Interact()
     {
         Debug.Log($"INTERACT");
     }

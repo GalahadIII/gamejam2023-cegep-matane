@@ -3,7 +3,6 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(MovementController))]
-
 public class PlayerManager : MonoBehaviour
 {
     Vector3 positionChute;
@@ -20,8 +19,6 @@ public class PlayerManager : MonoBehaviour
 
     private Vector3 direction;
 
-
-
     float distanceChute;
 
     public static bool isDead;
@@ -30,7 +27,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnEnable()
     {
-        _targetRot = Quaternion.Euler(0, 180, 0);
+        // _targetRot = Quaternion.Euler(0, 180, 0);
         // Debug.Log($"OnEnable {_targetRot.eulerAngles}");
 
         moveController = GetComponent<MovementController>();
@@ -127,7 +124,7 @@ public class PlayerManager : MonoBehaviour
         moveController.FreezePosition(axis);
     }
 
-    private Quaternion _targetRot;
+    private Quaternion _targetRot = Quaternion.Euler(0, 180, 0);
     private float _rotationSpeed = 1;
     public void SetQuaternion(Quaternion quaternion, float rotationSpeed)
     {

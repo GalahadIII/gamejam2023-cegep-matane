@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
 
     private void DoRotate()
     {
-        Debug.Log($"{Rotation.Quaternion.eulerAngles}");
+        // Debug.Log($"{Rotation.Quaternion.eulerAngles}");
         
         transform.rotation = Rotation.Quaternion;
         
@@ -101,6 +101,7 @@ public class GameManager : MonoBehaviour
         Player.FreezePosition(TowerContextToFreezePosition(TowerSide));
     }
 
+    public FreezePositionAxis TowerContextToFreezePosition() => TowerContextToFreezePosition(TowerSide);
     private static FreezePositionAxis TowerContextToFreezePosition(TowerContext towerContext)
     {
         // if (towerContext == TowerContext.East || towerContext == TowerContext.West)

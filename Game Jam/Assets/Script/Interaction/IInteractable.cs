@@ -1,4 +1,6 @@
-public interface IInteractable
+
+
+public interface IInteractable : IPosition
 {
     public void ShowHint();
     public void Interact();

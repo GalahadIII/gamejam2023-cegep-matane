@@ -1,18 +1,20 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractionModule : MonoBehaviour
+public class InteractionModule : ColliderDetector, IPosition
 {
-    [SerializeField] private List<GameObject> _objectsInRange = new();
+    public Vector3 WorldPosition => transform.position + new Vector3(0, 1, 0);
+    
+    public IInteractable ClosestInteractable = null;
     private bool _canInteract = false;
 
-    private void FixedUpdate()
+    private new void FixedUpdate()
     {
+        base.FixedUpdate();
         Vector3 position = transform.position;
         float lastClosestDistance = -1;
-        IInteractable closest = null;
+        ClosestInteractable = null;
 
-        foreach (GameObject o in _objectsInRange)
+        foreach (GameObject o in Objects)
         {
             IInteractable oInteractable = o.GetComponent<IInteractable>();
             if (oInteractable == null) continue;
@@ -21,21 +23,24 @@ public class InteractionModule : MonoBehaviour
 
             if (distance < lastClosestDistance || lastClosestDistance < 0)
             {
-                closest = oInteractable;
+                ClosestInteractable = oInteractable;
                 lastClosestDistance = distance;
             }
         }
+        InteractionGUI.Inst.Active = ClosestInteractable;
 
-        if (closest == null)
+        if (ClosestInteractable == null)
         {
+            InteractionGUI.Inst.Active = this;
             _canInteract = false;
             return;
         }
 
-        closest.ShowHint();
+        ClosestInteractable.ShowHint();
         if (!_canInteract) return;
-        closest.Interact();
+        ClosestInteractable.Interact();
         _canInteract = false;
+
     }
     
     public void TriggerInteraction()
@@ -45,18 +50,19 @@ public class InteractionModule : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        _objectsInRange.Add(col.gameObject);
+        Objects.Add(col.gameObject);
     }
     private void OnCollisionExit(Collision col)
     {
-        _objectsInRange.Remove(col.gameObject);
+        Objects.Remove(col.gameObject);
     }
     private void OnTriggerEnter(Collider col)
     {
-        _objectsInRange.Add(col.gameObject);
+        Objects.Add(col.gameObject);
     }
     private void OnTriggerExit(Collider col)
     {
-        _objectsInRange.Remove(col.gameObject);
+        Objects.Remove(col.gameObject);
     }
+
 }

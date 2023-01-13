@@ -16,6 +16,7 @@ public class Door : MonoBehaviour
     {
         t = transform;
         if (Opened) Pivot(true);
+        // Debug.Log($"{t.rotation}");
         
         t.localPosition = PivotOffset;
     }
