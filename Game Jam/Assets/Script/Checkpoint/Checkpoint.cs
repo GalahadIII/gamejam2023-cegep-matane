@@ -5,12 +5,13 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     public float CamHeight;
-    
+    public Animator animator;
+
     private void Start()
     {
-        
+
     }
-    
+
     private void Update()
     {
     }
@@ -19,6 +20,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
+            animator.SetTrigger("isTriggered");
             Debug.Log(gameObject.name);
             GameManager.Inst.Player.CurrentCheckpoint = this;
         }
