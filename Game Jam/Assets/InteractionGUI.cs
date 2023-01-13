@@ -28,8 +28,8 @@ public class InteractionGUI : MonoBehaviour
     protected void DisplayHint()
     {
         transform.position = (Vector2)Camera.main!.WorldToScreenPoint(Active.WorldPosition);
-        gameObject.SetActive(true);
         Timer = 0;
+        gameObject.SetActive(true);
     }
 
     private void FixedUpdate()
