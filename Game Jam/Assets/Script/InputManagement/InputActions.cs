@@ -118,6 +118,15 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Escape"",
+                    ""type"": ""Value"",
+                    ""id"": ""a1d1584b-64c3-4e79-a088-2f0e8ebf9124"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""CamRotateRight"",
                     ""type"": ""Button"",
                     ""id"": ""30cc77fa-9c64-4664-8e3a-b6bed1421cec"",
@@ -464,6 +473,17 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""CamRotateLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""581382b7-03ea-4a31-854a-268643a8f8f7"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Escape"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1061,6 +1081,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player_Action1 = m_Player.FindAction("Action1", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
+        m_Player_Escape = m_Player.FindAction("Escape", throwIfNotFound: true);
         m_Player_CamRotateRight = m_Player.FindAction("CamRotateRight", throwIfNotFound: true);
         m_Player_CamRotateLeft = m_Player.FindAction("CamRotateLeft", throwIfNotFound: true);
         // UI
@@ -1144,6 +1165,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Action1;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Inventory;
+    private readonly InputAction m_Player_Escape;
     private readonly InputAction m_Player_CamRotateRight;
     private readonly InputAction m_Player_CamRotateLeft;
     public struct PlayerActions
@@ -1160,6 +1182,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @Action1 => m_Wrapper.m_Player_Action1;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
+        public InputAction @Escape => m_Wrapper.m_Player_Escape;
         public InputAction @CamRotateRight => m_Wrapper.m_Player_CamRotateRight;
         public InputAction @CamRotateLeft => m_Wrapper.m_Player_CamRotateLeft;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -1201,6 +1224,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Inventory.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
                 @Inventory.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
                 @Inventory.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
+                @Escape.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscape;
+                @Escape.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscape;
+                @Escape.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscape;
                 @CamRotateRight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamRotateRight;
                 @CamRotateRight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamRotateRight;
                 @CamRotateRight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamRotateRight;
@@ -1241,6 +1267,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Inventory.started += instance.OnInventory;
                 @Inventory.performed += instance.OnInventory;
                 @Inventory.canceled += instance.OnInventory;
+                @Escape.started += instance.OnEscape;
+                @Escape.performed += instance.OnEscape;
+                @Escape.canceled += instance.OnEscape;
                 @CamRotateRight.started += instance.OnCamRotateRight;
                 @CamRotateRight.performed += instance.OnCamRotateRight;
                 @CamRotateRight.canceled += instance.OnCamRotateRight;
@@ -1413,6 +1442,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnAction1(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
+        void OnEscape(InputAction.CallbackContext context);
         void OnCamRotateRight(InputAction.CallbackContext context);
         void OnCamRotateLeft(InputAction.CallbackContext context);
     }

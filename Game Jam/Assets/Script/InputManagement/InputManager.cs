@@ -13,7 +13,8 @@ public class InputManager : MonoBehaviour
     private InputActions _playerActions;
     private InputAction _move, _moveUp, _moveDown,
         _cursorPosition, _cursorPositionDelta, _scroll,
-        _action1, _interaction, _inventory;
+        _action1, _interaction, _inventory,
+        _escape;
 
     private void OnEnable()
     {
@@ -45,6 +46,8 @@ public class InputManager : MonoBehaviour
         _action1 = _playerActions.Player.Action1;
         _interaction = _playerActions.Player.Interact;
         _inventory = _playerActions.Player.Inventory;
+
+        _escape = _playerActions.Player.Escape;
     }
     
     public void UpdateData()
@@ -68,6 +71,8 @@ public class InputManager : MonoBehaviour
         KeyInputDataUpdate(ref _playerInputs.Inventory, _inventory.ReadValue<float>() != 0f);
         
         KeyInputDataUpdate(ref _playerInputs.Action1, _action1.ReadValue<float>() != 0f);
+        
+        KeyInputDataUpdate(ref _playerInputs.Escape, _escape.ReadValue<float>() != 0f);
     }
 
     public void UpdateTimer()
@@ -87,6 +92,8 @@ public class InputManager : MonoBehaviour
         KeyInputDataUpdateTimer(ref _playerInputs.Inventory);
         
         KeyInputDataUpdateTimer(ref _playerInputs.Action1);
+        
+        KeyInputDataUpdateTimer(ref _playerInputs.Escape);
     }
 
     #region Checks and Sets
@@ -217,6 +224,7 @@ public struct PlayerInputs
     public KeyInput Interact;
     public KeyInput Inventory;
     public KeyInput Action1;
+    public KeyInput Escape;
 }
 
 public struct Vector2Input

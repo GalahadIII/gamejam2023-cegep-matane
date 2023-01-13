@@ -41,7 +41,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (InputManager.PlayerInputs.Interact.OnDown)
             interactionModule.TriggerInteraction();
-        if (InputManager.PlayerInputs.Inventory.OnDown)
+        if (InputManager.PlayerInputs.Escape.OnDown)
             GUIManager.Inst.DisplayToggle_PauseMenu();
 
         Transform t = transform;

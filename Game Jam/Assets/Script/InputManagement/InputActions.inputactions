@@ -96,6 +96,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Escape",
+                    "type": "Value",
+                    "id": "a1d1584b-64c3-4e79-a088-2f0e8ebf9124",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "CamRotateRight",
                     "type": "Button",
                     "id": "30cc77fa-9c64-4664-8e3a-b6bed1421cec",
@@ -442,6 +451,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "CamRotateLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "581382b7-03ea-4a31-854a-268643a8f8f7",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
