@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(MovementController))]
 
@@ -40,6 +38,9 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
+        if (InputManager.PlayerInputs.Interact.OnDown)
+            interactionModule.TriggerInteraction();
+        
         Transform t = transform;
 
         float velX = GameManager.Inst.ConvertVector(moveController.Speed).x;
@@ -51,11 +52,9 @@ public class PlayerManager : MonoBehaviour
 
         GameManager.Inst.CameraController.SetPosY(Math.Max(t.position.y, GameManager.Inst.CameraController.CameraMinHeight));
 
-        if (moveController.Speed.magnitude > 0.1f && !moveController.Falling && !moveController.Jumping)
+        if (moveController.Speed.magnitude > 0.1f && moveController.Grounded)
         {
-
             animator.SetBool("isWalking", true);
-
         }
         else
         {
@@ -85,8 +84,10 @@ public class PlayerManager : MonoBehaviour
     private void Die()
     {
         Debug.Log("Dead");
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
         modeleVivant.SetActive(false);
-        deadBody.SetActive(true);
+        Instantiate(deadBody, transform.position, Quaternion.identity);
+        explode();
         outlineVivant.SetActive(false);
         moveController.DisabledControls = true;
         isDead = true;
@@ -95,12 +96,26 @@ public class PlayerManager : MonoBehaviour
     [ContextMenu("Respawn")]
     private void Respawn()
     {
+        isDead = false;
+        gameObject.GetComponent<CapsuleCollider>().enabled = true;
         modeleVivant.SetActive(true);
-        deadBody.SetActive(false);
+        Destroy(deadBody);
         outlineVivant.SetActive(true);
         moveController.DisabledControls = false;
-        isDead = false;
+        ResetVel();
         gameObject.transform.position = CurrentCheckpoint.transform.position;
+    }
+
+    public void explode()
+    {
+        Rigidbody[] listRigidbody = deadBody.GetComponentsInChildren<Rigidbody>();
+        Debug.Log(listRigidbody.Length);
+        foreach (var rb in listRigidbody)
+        {
+            Vector3 dir = (rb.transform.position - transform.position + Random.insideUnitSphere * 0.3f).normalized;
+            
+            rb.AddForce(dir * Random.Range(7, 13), ForceMode.Impulse);
+        }
     }
 
     public void ResetVel()
