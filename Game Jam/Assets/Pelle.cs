@@ -8,9 +8,13 @@ public class Pelle : Trap
     public BoxCollider children;
     public Animator animator;
 
+    public AudioClip _ac;
+
+    private AudioSource _as;
+
     void Start()
     {
-
+        _as = gameObject.GetComponent<AudioSource>();
         children.enabled = false;
 
     }
@@ -19,6 +23,7 @@ public class Pelle : Trap
     {
         if (col.gameObject.CompareTag("Player"))
         {
+            _as.PlayOneShot(_ac);
             GameManager.Inst.Player.Die();
         }
     }

@@ -15,10 +15,11 @@ public class Rateau : Trap
 
     void Start()
     {
-
+        audioSource = gameObject.GetComponent<AudioSource>();
         children.enabled = false;
 
     }
+
 
 
     // Update is called once per frame
