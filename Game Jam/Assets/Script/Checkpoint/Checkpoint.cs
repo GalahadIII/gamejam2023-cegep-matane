@@ -18,11 +18,11 @@ public class Checkpoint : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            animator.SetTrigger("isTriggered");
             Debug.Log(gameObject.name);
             GameManager.Inst.Player.CurrentCheckpoint = this;
             
-            _as.PlayOneShot(_ac);
+            animator!.SetTrigger("isTriggered");
+            _as!.PlayOneShot(_ac);
         }
         
         

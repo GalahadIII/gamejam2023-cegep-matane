@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e112248b037969aba6f37f72c69939, type: 3}
   m_Name: ScreenSpaceOutlines
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   renderPassEvent: 300
   outlinesLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   outlinesOccluderLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 65
   outlineSettings:
-    outlineColor: {r: 0.31764707, g: 0.31764707, b: 0.31764707, a: 1}
-    outlineScale: 0
+    outlineColor: {r: 0.54570884, g: 1, b: 0.504717, a: 1}
+    outlineScale: 1.5
     depthThreshold: 1.5
     robertsCrossMultiplier: 100
     normalThreshold: 0.4
