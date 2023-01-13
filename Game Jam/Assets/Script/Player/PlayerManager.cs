@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -40,6 +41,8 @@ public class PlayerManager : MonoBehaviour
     {
         if (InputManager.PlayerInputs.Interact.OnDown)
             interactionModule.TriggerInteraction();
+        if (InputManager.PlayerInputs.Inventory.OnDown)
+            GUIManager.Inst.DisplayToggle_PauseMenu();
 
         Transform t = transform;
 
@@ -90,6 +93,13 @@ public class PlayerManager : MonoBehaviour
         outlineVivant.SetActive(false);
         modeleVivant.SetActive(false);
         Instantiate(deadBody, transform.position, transform.rotation);
+        Invoke("DisplayRespawnMenu", 1);
+
+    }
+
+    private void DisplayRespawnMenu()
+    {
+        GUIManager.Inst.DisplayToggle_RestartMenuDeath();
     }
 
     [ContextMenu("Respawn")]
