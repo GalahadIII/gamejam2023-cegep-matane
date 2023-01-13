@@ -166,10 +166,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 7651328387359929992}
     m_Modifications:
     - target: {fileID: 1407513889357759186, guid: 611be7461a8d5cebba2475248487c1ca, type: 3}
-      propertyPath: _collider
-      value: 
-      objectReference: {fileID: 6242886206627562984}
-    - target: {fileID: 1407513889357759186, guid: 611be7461a8d5cebba2475248487c1ca, type: 3}
       propertyPath: PivotSpeed
       value: 25
       objectReference: {fileID: 0}
@@ -228,30 +224,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1407513889357759186, guid: 611be7461a8d5cebba2475248487c1ca, type: 3}
   m_PrefabInstance: {fileID: 909371041858132773}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5095091015776011624}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fce2dec81cd0c8a23a0c93969fe68491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &5095091015776011624 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5344605541595749965, guid: 611be7461a8d5cebba2475248487c1ca, type: 3}
-  m_PrefabInstance: {fileID: 909371041858132773}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &6242886206627562984
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5095091015776011624}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &7426480949792133130 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7750296073841396527, guid: 611be7461a8d5cebba2475248487c1ca, type: 3}
