@@ -22,6 +22,13 @@ public class PlayerManager : MonoBehaviour
 
     private Vector3 direction;
 
+<<<<<<< Updated upstream
+=======
+
+
+
+
+>>>>>>> Stashed changes
     float distanceChute;
 
     public static bool isDead;
@@ -126,4 +133,5 @@ public class PlayerManager : MonoBehaviour
     {
         transform.rotation = Quaternion.Slerp(transform.rotation, _targetRot, _rotationSpeed * Time.deltaTime);
     }
+
 }

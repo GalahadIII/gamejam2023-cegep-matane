@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CamHeight: 0
   animator: {fileID: 4586798881380268306}
-  _ac: {fileID: 8300000, guid: 66e8e835b0cb51842af8f17e082d847d, type: 3}
+  _ac: {fileID: 8300000, guid: 701710cd777b9ca4c830a5da014a0fc3, type: 3}
 --- !u!65 &4586798881033956035
 BoxCollider:
   m_ObjectHideFlags: 0
