@@ -115,8 +115,11 @@ public class GameManager : MonoBehaviour
             _ => throw new ArgumentOutOfRangeException()
         };
     }
-    
-    
+
+    public void DisplayInteractHint(Vector3 worldPosition)
+    {
+        // Debug.Log($"{worldPosition}");
+    }
     
 }
 

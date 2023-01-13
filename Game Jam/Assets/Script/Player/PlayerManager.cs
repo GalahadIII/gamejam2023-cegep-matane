@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 [RequireComponent(typeof(MovementController))]
@@ -40,6 +37,9 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
+        if (InputManager.PlayerInputs.Interact.OnDown)
+            interactionModule.TriggerInteraction();
+        
         Transform t = transform;
         
         float velX = GameManager.Inst.ConvertVector(moveController.Speed).x;
@@ -53,9 +53,7 @@ public class PlayerManager : MonoBehaviour
 
         if (moveController.Speed.magnitude > 0.1f)
         {
-
             animator.SetBool("isWalking", true);
-
         }
         else
         {
