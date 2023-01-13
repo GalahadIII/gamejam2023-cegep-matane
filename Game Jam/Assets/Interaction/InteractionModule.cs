@@ -27,11 +27,11 @@ public class InteractionModule : ColliderDetector, IPosition
                 lastClosestDistance = distance;
             }
         }
-        InteractionGUI.Inst.Active = ClosestInteractable;
+        //InteractionGUI.Inst.Active = ClosestInteractable;
 
         if (ClosestInteractable == null)
         {
-            InteractionGUI.Inst.Active = this;
+            //InteractionGUI.Inst.Active = this;
             _canInteract = false;
             return;
         }
