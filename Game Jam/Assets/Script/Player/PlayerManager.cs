@@ -18,6 +18,8 @@ public class PlayerManager : MonoBehaviour
 
     public GameObject outlineVivant;
 
+    public GameObject achPanel;
+
     private Vector3 direction;
 
 
@@ -104,6 +106,7 @@ public class PlayerManager : MonoBehaviour
         moveController.DisabledControls = false;
         ResetVel();
         gameObject.transform.position = CurrentCheckpoint.transform.position;
+        achPanel.SetActive(false);
     }
 
     public void explode()

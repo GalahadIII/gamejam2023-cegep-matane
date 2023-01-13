@@ -5,10 +5,11 @@ using UnityEngine;
 public class Rateau : ColliderDetector
 {
     // Start is called before the first frame update
-    void Start()
-    {
+    public AudioClip achSound;
 
-    }
+    public AudioSource audioSource;
+    public GameObject achPanel;
+
 
     // Update is called once per frame
     void Update()
@@ -21,6 +22,8 @@ public class Rateau : ColliderDetector
         if (col.gameObject.CompareTag("Player"))
         {
             GameManager.Inst.Player.Die();
+            achPanel.SetActive(true);
+            audioSource.PlayOneShot(achSound);
         }
     }
 
