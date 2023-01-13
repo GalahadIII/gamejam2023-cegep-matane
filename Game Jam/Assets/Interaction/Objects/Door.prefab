@@ -49,6 +49,7 @@ MonoBehaviour:
   openSound: {fileID: 8300000, guid: 48b071f8f1378a6e8bec06013118e1b9, type: 3}
   closeSound: {fileID: 8300000, guid: 653806a96cf88ad2da7f789cfd043f11, type: 3}
   _audio: {fileID: 8404395999931702647}
+  _collider: {fileID: 265173467676342246}
   Opened: 0
   PivotSpeed: 300
   PivotOffset: {x: -0.76, y: 0, z: 0}
