@@ -22,10 +22,6 @@ public class PlayerManager : MonoBehaviour
 
     private Vector3 direction;
 
-
-
-
-
     float distanceChute;
 
     public static bool isDead;
@@ -107,6 +103,7 @@ public class PlayerManager : MonoBehaviour
         moveController.DisabledControls = false;
         ResetVel();
         gameObject.transform.position = CurrentCheckpoint.transform.position;
+        GameManager.Inst.SetTowerSide(CurrentCheckpoint.TowerSide);
         achPanel.SetActive(false);
     }
 

@@ -55,6 +55,20 @@ public class GameManager : MonoBehaviour
         // return pivotedVector;
     }
 
+    public void SetTowerSide(TowerContext towerSide)
+    {
+        TowerSide = towerSide;
+        float angle = towerSide switch
+        {
+            TowerContext.South => 0,
+            TowerContext.West => 90,
+            TowerContext.North => 180,
+            TowerContext.East => 270,
+            _ => throw new ArgumentOutOfRangeException()
+        };
+        Rotation = new Direction2D(angle).ChangeQuaternionAxis(Vector3.up);
+        DoRotate();
+    }
     public void TurnRight()
     {
         // Debug.Log("TurnRight");
@@ -90,7 +104,6 @@ public class GameManager : MonoBehaviour
 
     private void DoRotate()
     {
-        // Debug.Log($"{Rotation.Quaternion.eulerAngles}");
         
         transform.rotation = Rotation.Quaternion;
         
@@ -101,7 +114,6 @@ public class GameManager : MonoBehaviour
         Player.FreezePosition(TowerContextToFreezePosition(TowerSide));
     }
 
-    public FreezePositionAxis TowerContextToFreezePosition() => TowerContextToFreezePosition(TowerSide);
     private static FreezePositionAxis TowerContextToFreezePosition(TowerContext towerContext)
     {
         // if (towerContext == TowerContext.East || towerContext == TowerContext.West)
@@ -117,11 +129,6 @@ public class GameManager : MonoBehaviour
         };
     }
 
-    public void DisplayInteractHint(Vector3 worldPosition)
-    {
-        // Debug.Log($"{worldPosition}");
-    }
-    
 }
 
 public enum TowerContext {South, East, North, West}

@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
+    public TowerContext TowerSide = TowerContext.South;
     public float CamHeight;
     public Animator animator;
     public AudioClip _ac;
@@ -13,10 +12,6 @@ public class Checkpoint : MonoBehaviour
     private void Start()
     {
         _as = gameObject.GetComponent<AudioSource>();
-    }
-
-    private void Update()
-    {
     }
 
     private void OnTriggerEnter(Collider col)
