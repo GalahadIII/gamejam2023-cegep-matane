@@ -86,7 +86,7 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("Dead");
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
         modeleVivant.SetActive(false);
-        Instantiate(deadBody, transform.position, quaternion.identity);
+        Instantiate(deadBody, transform.position, Quaternion.identity);
         explode();
         outlineVivant.SetActive(false);
         moveController.DisabledControls = true;
