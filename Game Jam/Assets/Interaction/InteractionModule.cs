@@ -3,7 +3,7 @@ using UnityEngine;
 public class InteractionModule : ColliderDetector, IPosition
 {
     public Vector3 WorldPosition => transform.position + new Vector3(0, 1, 0);
-    
+
     public IInteractable ClosestInteractable = null;
     private bool _canInteract = false;
 
@@ -18,7 +18,7 @@ public class InteractionModule : ColliderDetector, IPosition
         {
             IInteractable oInteractable = o.GetComponent<IInteractable>();
             if (oInteractable == null) continue;
-            
+
             float distance = (position - o.transform.position).magnitude;
 
             if (distance < lastClosestDistance || lastClosestDistance < 0)
@@ -42,7 +42,7 @@ public class InteractionModule : ColliderDetector, IPosition
         _canInteract = false;
 
     }
-    
+
     public void TriggerInteraction()
     {
         _canInteract = true;
