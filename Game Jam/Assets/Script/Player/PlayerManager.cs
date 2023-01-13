@@ -104,7 +104,8 @@ public class PlayerManager : MonoBehaviour
         ResetVel();
         gameObject.transform.position = CurrentCheckpoint.transform.position;
         GameManager.Inst.SetTowerSide(CurrentCheckpoint.TowerSide);
-        achPanel.SetActive(false);
+        if (achPanel != null)
+            achPanel.SetActive(false);
     }
 
     public void ResetVel()
