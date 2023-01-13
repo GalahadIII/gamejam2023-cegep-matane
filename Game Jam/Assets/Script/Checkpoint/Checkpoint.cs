@@ -20,11 +20,11 @@ public class Checkpoint : MonoBehaviour
         {
             Debug.Log(gameObject.name);
             GameManager.Inst.Player.CurrentCheckpoint = this;
-            
+
             animator!.SetTrigger("isTriggered");
             _as!.PlayOneShot(_ac);
         }
-        
-        
+
+
     }
 }
