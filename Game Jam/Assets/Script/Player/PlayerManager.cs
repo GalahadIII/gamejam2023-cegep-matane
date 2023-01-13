@@ -22,13 +22,10 @@ public class PlayerManager : MonoBehaviour
 
     private Vector3 direction;
 
-<<<<<<< Updated upstream
-=======
 
 
 
 
->>>>>>> Stashed changes
     float distanceChute;
 
     public static bool isDead;
