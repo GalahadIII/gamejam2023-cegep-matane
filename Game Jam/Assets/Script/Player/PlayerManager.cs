@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -85,14 +86,13 @@ public class PlayerManager : MonoBehaviour
     }
     public void Die()
     {
-        Debug.Log("Dead");
-        gameObject.GetComponent<CapsuleCollider>().enabled = false;
-        modeleVivant.SetActive(false);
-        Instantiate(deadBody, transform.position, Quaternion.identity);
-        explode();
-        outlineVivant.SetActive(false);
-        moveController.DisabledControls = true;
         isDead = true;
+        Debug.Log("Dead");
+        moveController.DisabledControls = true;
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        outlineVivant.SetActive(false);
+        modeleVivant.SetActive(false);
+        Instantiate(deadBody, transform.position, transform.rotation);
     }
 
     [ContextMenu("Respawn")]
@@ -107,18 +107,6 @@ public class PlayerManager : MonoBehaviour
         ResetVel();
         gameObject.transform.position = CurrentCheckpoint.transform.position;
         achPanel.SetActive(false);
-    }
-
-    public void explode()
-    {
-        Rigidbody[] listRigidbody = deadBody.GetComponentsInChildren<Rigidbody>();
-        Debug.Log(listRigidbody.Length);
-        foreach (var rb in listRigidbody)
-        {
-            Vector3 dir = (rb.transform.position - transform.position + Random.insideUnitSphere * 0.3f).normalized;
-
-            rb.AddForce(dir * Random.Range(7, 13), ForceMode.Impulse);
-        }
     }
 
     public void ResetVel()
