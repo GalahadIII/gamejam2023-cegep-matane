@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GUIManager : MonoBehaviour
 {
@@ -10,5 +11,29 @@ public class GUIManager : MonoBehaviour
     }
 
     public InteractionGUI InteractOverLay;
+    public GameObject RestartMenuDeath;
+    
+    //
+
+    public void Display_RestartMenuDeath()
+    {
+        RestartMenuDeath.SetActive(!RestartMenuDeath.activeSelf);
+    }
+    
+    //
+
+    public void Menu_ExitGame()
+    {
+        Application.Quit();
+    }
+
+    public void Menu_Restart()
+    {
+        SceneManager.LoadScene("niveau1");
+    }
+    
+    
+    
+    
 
 }
