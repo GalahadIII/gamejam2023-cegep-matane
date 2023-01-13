@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    [SerializeField] private AudioClip openSound;
+    [SerializeField] private AudioClip closeSound;
+    [SerializeField] private AudioSource _audio;
     public bool Opened = false;
     public float PivotSpeed = 300f;
     public Vector3 PivotOffset = new (0,0,0);
@@ -40,8 +43,9 @@ public class Door : MonoBehaviour
 
     public void Pivot(bool set = false)
     {
-        Opened = !Opened;
         
+        Opened = !Opened;
+        _audio.PlayOneShot(Opened ? openSound : closeSound);
         if (set) t.localRotation = TargetRotation;
     }
 
