@@ -328,7 +328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 122155885747666009, guid: dc5ff62eadb5ec74091bd5744bbfd40f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Menu_ExitGame
+      value: Load_MainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 122155885747666009, guid: dc5ff62eadb5ec74091bd5744bbfd40f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -745,7 +745,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7757783558975743103, guid: 73d67f40210c5944fa5071ef1f03d868, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Menu_ExitGame
+      value: Load_MainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 7757783558975743103, guid: 73d67f40210c5944fa5071ef1f03d868, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

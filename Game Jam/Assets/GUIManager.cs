@@ -15,13 +15,12 @@ public class GUIManager : MonoBehaviour
     
     //
 
-    public void DisplayToggle_RestartMenuDeath()
+    public void Toggle_RestartMenuDeath()
     {
-        Debug.Log($"DisplayToggle_RestartMenuDeath");
         RestartMenuDeath.SetActive(!RestartMenuDeath.activeSelf);
     }
 
-    public void DisplayToggle_PauseMenu()
+    public void Toggle_PauseMenu()
     {
         bool active = !PauseMenu.activeSelf;
         PauseMenu.SetActive(active);
@@ -35,15 +34,22 @@ public class GUIManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void Menu_Restart()
-    {
-        SceneManager.LoadScene("niveau1");
-    }
-
     public void Menu_Respawn()
     {
         GameManager.Inst.Player.Respawn();
-        DisplayToggle_RestartMenuDeath();
+        Toggle_RestartMenuDeath();
+    }
+    
+    //
+
+    public static void Load_MainMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+
+    public static void Load_Game()
+    {
+        SceneManager.LoadScene("niveau1-gamejam-level");
     }
     
     

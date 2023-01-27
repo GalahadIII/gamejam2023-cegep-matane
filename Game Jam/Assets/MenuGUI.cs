@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MenuGUI : MonoBehaviour
 {
@@ -24,7 +23,7 @@ public class MenuGUI : MonoBehaviour
     public void MainMenu_Commencer()
     {
         Debug.Log("MenuGUI.Inst.ButtonCommencer()");
-        SceneManager.LoadScene("niveau1");
+        GUIManager.Load_Game();
     }
 
     public void MainMenu_Credits()

@@ -42,7 +42,7 @@ public class PlayerManager : MonoBehaviour
         if (InputManager.PlayerInputs.Interact.OnDown)
             interactionModule.TriggerInteraction();
         if (InputManager.PlayerInputs.Escape.OnDown)
-            GUIManager.Inst.DisplayToggle_PauseMenu();
+            GUIManager.Inst.Toggle_PauseMenu();
 
         Transform t = transform;
 
@@ -99,7 +99,7 @@ public class PlayerManager : MonoBehaviour
 
     private void DisplayRespawnMenu()
     {
-        GUIManager.Inst.DisplayToggle_RestartMenuDeath();
+        GUIManager.Inst.Toggle_RestartMenuDeath();
     }
 
     [ContextMenu("Respawn")]

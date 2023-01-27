@@ -16,12 +16,8 @@ public class InputManager : MonoBehaviour
         _action1, _interaction, _inventory,
         _escape;
 
-    private void OnEnable()
-    {
-        Inst = this;
-        SetupAction();
-        _playerActions.Enable();
-    }
+    private void Awake() => Setup();
+    private void OnEnable() => Setup();
     private void Update()
     {        
         UpdateData();
@@ -31,9 +27,11 @@ public class InputManager : MonoBehaviour
         UpdateTimer();
     }
 
-    private void SetupAction()
+    private void Setup()
     {
+        Inst = this;
         _playerActions = new InputActions();
+        _playerActions.Enable();
         
         _move = _playerActions.Player.Move;
         _moveUp = _playerActions.Player.MoveUp;
