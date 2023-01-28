@@ -3,6 +3,7 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     public TowerContext TowerSide = TowerContext.South;
+    public bool HasVisual = true;
     public float CamHeight;
     public Animator animator;
     public AudioClip _ac;
@@ -16,14 +17,13 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.CompareTag("Player"))
-        {
-            Debug.Log(gameObject.name);
-            GameManager.Inst.Player.CurrentCheckpoint = this;
+        if (!col.gameObject.CompareTag("Player")) return;
+        Debug.Log(gameObject.name);
+        GameManager.Inst.Player.CurrentCheckpoint = this;
 
-            animator!.SetTrigger("isTriggered");
-            _as!.PlayOneShot(_ac);
-        }
+        if (!HasVisual) return;
+        animator!.SetTrigger("isTriggered");
+        _as!.PlayOneShot(_ac);
 
 
     }

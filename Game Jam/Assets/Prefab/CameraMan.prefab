@@ -42,7 +42,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7656835284517169604}
   - component: {fileID: 7656835284517169611}
-  - component: {fileID: 1770356552019816351}
   - component: {fileID: 8631273459776272991}
   m_Layer: 0
   m_Name: CameraMan
@@ -84,23 +83,6 @@ MonoBehaviour:
   magnitude: 0.15
   CameraMinHeight: 5
   duration: 0.1
---- !u!114 &1770356552019816351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7656835284517169605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IsGlobal: 1
-  priority: 0
-  blendDistance: 0
-  weight: 1
-  sharedProfile: {fileID: 11400000, guid: 73f17b121d2c4474b9ab55372a387c53, type: 2}
 --- !u!82 &8631273459776272991
 AudioSource:
   m_ObjectHideFlags: 0

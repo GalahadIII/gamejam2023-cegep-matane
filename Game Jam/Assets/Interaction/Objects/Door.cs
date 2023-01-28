@@ -53,5 +53,6 @@ public class Door : MonoBehaviour
     public void SetOpen(bool opened)
     {
         Opened = opened;
+        _collider.enabled = !opened;
     }
 }

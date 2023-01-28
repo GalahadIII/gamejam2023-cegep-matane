@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Main/Menu.unity
     guid: 445c6ce5b02234e4eb896a2d2466c15d
   - enabled: 1
-    path: Assets/Scenes/Kass/niveau1.unity
-    guid: 26965f36fb90cc94f8c95ee535801fe0
-  - enabled: 1
     path: Assets/Scenes/Main/niveau1-gamejam-level.unity
     guid: eee6dd08c58df24d79c132a9e3f4f8d6
   m_configObjects: {}
