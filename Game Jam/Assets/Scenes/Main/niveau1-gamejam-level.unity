@@ -1839,6 +1839,10 @@ PrefabInstance:
       value: TourTop
       objectReference: {fileID: 0}
     - target: {fileID: 2889640566238784731, guid: cdba0008ae3d533468db6982ccfbc890, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2889640566238784731, guid: cdba0008ae3d533468db6982ccfbc890, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -2293,7 +2297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4586798881033956045, guid: f85bbd23075ec524290d4868dd177402, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.790882
+      value: 12.97
       objectReference: {fileID: 0}
     - target: {fileID: 4586798881033956045, guid: f85bbd23075ec524290d4868dd177402, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4949,7 +4953,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6374283835144610047, guid: b66f415d2c0e7fc4c80e0376ea33e0b5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.3650608
+      value: 0.18
       objectReference: {fileID: 0}
     - target: {fileID: 6374283835144610047, guid: b66f415d2c0e7fc4c80e0376ea33e0b5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6512,7 +6516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4586798881033956045, guid: f85bbd23075ec524290d4868dd177402, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 27.440588
+      value: 27.96
       objectReference: {fileID: 0}
     - target: {fileID: 4586798881033956045, guid: f85bbd23075ec524290d4868dd177402, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9932,14 +9936,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 42331809}
     m_Modifications:
-    - target: {fileID: 60945962385548730, guid: d6b7d1abc29433c078b072ed50d6bd74, type: 3}
-      propertyPath: OpenedRotation.w
-      value: 0.70710677
-      objectReference: {fileID: 0}
-    - target: {fileID: 60945962385548730, guid: d6b7d1abc29433c078b072ed50d6bd74, type: 3}
-      propertyPath: OpenedRotation.y
-      value: -0.70710677
-      objectReference: {fileID: 0}
     - target: {fileID: 3238832652869520164, guid: d6b7d1abc29433c078b072ed50d6bd74, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -9987,26 +9983,6 @@ PrefabInstance:
     - target: {fileID: 6231630316270405141, guid: d6b7d1abc29433c078b072ed50d6bd74, type: 3}
       propertyPath: m_Name
       value: InteractDoor
-      objectReference: {fileID: 0}
-    - target: {fileID: 8434219250820928672, guid: d6b7d1abc29433c078b072ed50d6bd74, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9999062
-      objectReference: {fileID: 0}
-    - target: {fileID: 8434219250820928672, guid: d6b7d1abc29433c078b072ed50d6bd74, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8434219250820928672, guid: d6b7d1abc29433c078b072ed50d6bd74, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.013700443
-      objectReference: {fileID: 0}
-    - target: {fileID: 8434219250820928672, guid: d6b7d1abc29433c078b072ed50d6bd74, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8434219250820928672, guid: d6b7d1abc29433c078b072ed50d6bd74, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 1.57
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6b7d1abc29433c078b072ed50d6bd74, type: 3}

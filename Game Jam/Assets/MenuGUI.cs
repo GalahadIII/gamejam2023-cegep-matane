@@ -31,6 +31,11 @@ public class MenuGUI : MonoBehaviour
         Debug.Log("MenuGUI.Inst.ButtonCredits()");
         
     }
+
+    public void QuitterJeu()
+    {
+        Application.Quit();
+    }
     
     //
     

@@ -112,7 +112,11 @@ public class PlayerManager : MonoBehaviour
         outlineVivant.SetActive(true);
         moveController.DisabledControls = false;
         ResetVel();
-        gameObject.transform.position = CurrentCheckpoint.transform.position;
+        {
+            Vector3 newPosition = CurrentCheckpoint.transform.position;
+            positionChute = newPosition;
+            gameObject.transform.position = newPosition;
+        }
         GameManager.Inst.SetTowerSide(CurrentCheckpoint.TowerSide);
         if (achPanel != null)
             achPanel.SetActive(false);
