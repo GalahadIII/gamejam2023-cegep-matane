@@ -10,7 +10,6 @@ public class MovementController : MonoBehaviour
 
     private Rigidbody _rb;
     private PlayerInputs _frameInput;
-    private InteractionModule _interactionModule;
 
     private bool _hasControl;
     private bool _grounded;
@@ -49,6 +48,7 @@ public class MovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Debug.Log(_frameInput.Movement2d.Live);
         if (DisabledControls) return;
         Horizontal();
         Jump();

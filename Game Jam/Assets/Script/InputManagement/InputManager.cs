@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,7 +17,6 @@ public class InputManager : MonoBehaviour
         _action1, _interaction, _inventory,
         _escape;
 
-    private void Awake() => Setup();
     private void OnEnable() => Setup();
     private void Update()
     {        
@@ -29,9 +29,17 @@ public class InputManager : MonoBehaviour
 
     private void Setup()
     {
-        Inst = this;
-        _playerActions = new InputActions();
-        _playerActions.Enable();
+        if (Inst != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        {
+            Inst = this;
+            _playerActions = new InputActions();
+            _playerActions.Enable();
+            DontDestroyOnLoad(gameObject);
+        }
         
         _move = _playerActions.Player.Move;
         _moveUp = _playerActions.Player.MoveUp;
@@ -51,8 +59,10 @@ public class InputManager : MonoBehaviour
     public void UpdateData()
     {
         Vector2 hor = _move.ReadValue<Vector2>();
-        float vect = _moveUp.ReadValue<float>() * 1 + _moveDown.ReadValue<float>() * -1;
-        Vector3InputDataUpdate(ref _playerInputs.Movement, new Vector3(hor.x, vect, hor.y));
+        float vert = _moveUp.ReadValue<float>() * 1 + _moveDown.ReadValue<float>() * -1;
+        Vector3 move = new(hor.x, vert, hor.y);
+        // Debug.Log(move);
+        Vector3InputDataUpdate(ref _playerInputs.Movement, move);
         
         Vector2InputDataUpdate(ref _playerInputs.Movement2d, hor);
 

@@ -50,6 +50,7 @@ public class GUIManager : MonoBehaviour
     public static void Load_Game()
     {
         SceneManager.LoadScene("niveau1-gamejam-level");
+        Time.timeScale = 1;
     }
     
     

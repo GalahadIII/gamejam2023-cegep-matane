@@ -93,12 +93,12 @@ public class PlayerManager : MonoBehaviour
         outlineVivant.SetActive(false);
         modeleVivant.SetActive(false);
         Instantiate(deadBody, transform.position, transform.rotation);
-        Invoke("DisplayRespawnMenu", 1);
-
+        StartCoroutine(DisplayRespawnMenu());
     }
 
-    private void DisplayRespawnMenu()
+    private IEnumerator DisplayRespawnMenu()
     {
+        yield return new WaitForSeconds(1);
         GUIManager.Inst.Toggle_RestartMenuDeath();
     }
 
@@ -108,7 +108,7 @@ public class PlayerManager : MonoBehaviour
         isDead = false;
         gameObject.GetComponent<CapsuleCollider>().enabled = true;
         modeleVivant.SetActive(true);
-        Destroy(deadBody);
+        // Destroy(deadBody); CANT DELETE PREFAB
         outlineVivant.SetActive(true);
         moveController.DisabledControls = false;
         ResetVel();
