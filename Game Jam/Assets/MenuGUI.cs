@@ -1,4 +1,4 @@
-using UnityEngine;
+Game Jam/Assets/Interaction/Objects/Base.matusing UnityEngine;
 
 public class MenuGUI : MonoBehaviour
 {
@@ -8,7 +8,7 @@ public class MenuGUI : MonoBehaviour
     {
         Inst = this;
     }
-    
+
     //
 
     private bool _canvasActive = true;
@@ -17,7 +17,7 @@ public class MenuGUI : MonoBehaviour
         _canvasActive = !_canvasActive;
         GetComponent<Canvas>().enabled = _canvasActive;
     }
-    
+
     //
 
     public void MainMenu_Commencer()
@@ -29,14 +29,14 @@ public class MenuGUI : MonoBehaviour
     public void MainMenu_Credits()
     {
         Debug.Log("MenuGUI.Inst.ButtonCredits()");
-        
+
     }
 
     public void QuitterJeu()
     {
         Application.Quit();
     }
-    
+
     //
-    
+
 }
