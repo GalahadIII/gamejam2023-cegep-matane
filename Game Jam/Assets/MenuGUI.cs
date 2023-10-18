@@ -1,4 +1,4 @@
-Game Jam/Assets/Interaction/Objects/Base.matusing UnityEngine;
+using UnityEngine;
 
 public class MenuGUI : MonoBehaviour
 {
